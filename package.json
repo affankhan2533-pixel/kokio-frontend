@@ -1,0 +1,39 @@
+{
+  "name": "kokio-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@studio-freight/lenis": "^1.0.42",
+    "@tanstack/react-query": "^5.28.9",
+    "@tanstack/react-query-devtools": "^5.28.10",
+    "axios": "^1.6.8",
+    "clsx": "^2.1.0",
+    "embla-carousel-react": "^8.0.0",
+    "framer-motion": "^11.0.24",
+    "gsap": "^3.12.5",
+    "lucide-react": "^0.475.0",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.0",
+    "@hookform/resolvers": "^3.9.1",
+    "three": "^0.170.0",
+    "@react-three/fiber": "^9.0.0-rc.0",
+    "@react-three/drei": "^9.120.0",
+    "tailwind-merge": "^2.5.5",
+    "zod": "^3.24.1",
+    "zustand": "^5.0.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^4.0.0"
+  }
+}

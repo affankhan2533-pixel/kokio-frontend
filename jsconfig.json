@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@app/*": ["app/*"],
+      "@components/*": ["components/*"],
+      "@animations/*": ["animations/*"],
+      "@sections/*": ["sections/*"],
+      "@hooks/*": ["hooks/*"],
+      "@contexts/*": ["contexts/*"],
+      "@store/*": ["store/*"],
+      "@services/*": ["services/*"],
+      "@utils/*": ["utils/*"],
+      "@constants/*": ["constants/*"],
+      "@assets/*": ["assets/*"],
+      "@layouts/*": ["layouts/*"],
+      "@providers/*": ["providers/*"],
+      "@lib/*": ["lib/*"]
+    }
+  },
+  "include": ["**/*.js", "**/*.jsx", ".next/types/**/*.js"],
+  "exclude": ["node_modules"]
+}

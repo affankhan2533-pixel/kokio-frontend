@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-ivory: #F8F6F2;
+    --color-sand: #EFEAE2;
+    --color-onyx: #111111;
+    --color-champagne: #B8892D;
+    --color-charcoal: #161616;
+    --color-slate: #666666;
+    --color-divider: rgba(0, 0, 0, 0.08);
+  }
+
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    min-height: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #F8F6F2;
+    color: #161616;
+  }
+
+  body {
+    background-color: #F8F6F2;
+    color: #161616;
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 300;
+  }
+}
+
+/* Surface Utility Classes */
+.bg-ivory { background-color: #F8F6F2; color: #161616; }
+.bg-sand { background-color: #EFEAE2; color: #161616; }
+.bg-onyx { background-color: #111111; color: #F8F6F2; }
+
+/* Responsive Section Vertical Padding */
+.section-padding {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+}
+@media (min-width: 1280px) {
+  .section-padding {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+}
+
+/* KOKIO Typography Headings */
+.hero-title-responsive {
+  font-size: 42px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .hero-title-responsive {
+    font-size: 58px;
+  }
+}
+@media (min-width: 1280px) {
+  .hero-title-responsive {
+    font-size: 72px;
+    line-height: 1.05;
+  }
+}
+
+.section-title-responsive {
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+@media (min-width: 768px) {
+  .section-title-responsive {
+    font-size: 42px;
+  }
+}
+@media (min-width: 1280px) {
+  .section-title-responsive {
+    font-size: 52px;
+    line-height: 1.12;
+  }
+}
+
+/* Champagne Gold Text Gradient */
+.text-champagne-gradient {
+  background: linear-gradient(135deg, #B8892D 0%, #D4A74E 50%, #8C641B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Unique KOKIO Luxury Button System */
+.btn-primary-luxury {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 14px 28px;
+  background-color: #B8892D;
+  color: #161616;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px -5px rgba(184, 137, 45, 0.3);
+  cursor: pointer;
+}
+.btn-primary-luxury:hover {
+  background-color: #111111;
+  color: #F8F6F2;
+  border-color: #B8892D;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px -5px rgba(17, 17, 17, 0.4), 0 0 20px rgba(184, 137, 45, 0.2);
+}
+.btn-primary-luxury:active {
+  transform: translateY(0);
+}
+
+.btn-secondary-luxury {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 14px 28px;
+  background: rgba(248, 246, 242, 0.4);
+  backdrop-filter: blur(12px);
+  color: #161616;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 14px;
+  border: 1px solid #B8892D;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+.btn-secondary-luxury:hover {
+  background-color: #B8892D;
+  color: #161616;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -5px rgba(184, 137, 45, 0.35);
+}
+
+/* Unique KOKIO Cards with 18px Radius */
+.card-kokio-ivory {
+  background-color: #F8F6F2;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-kokio-ivory:hover {
+  border-color: rgba(184, 137, 45, 0.35);
+  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.09);
+  transform: translateY(-4px);
+}
+
+.card-kokio-sand {
+  background-color: #EFEAE2;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-kokio-sand:hover {
+  border-color: rgba(184, 137, 45, 0.4);
+  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+.card-kokio-onyx {
+  background-color: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  color: #F8F6F2;
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.4);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-kokio-onyx:hover {
+  border-color: rgba(184, 137, 45, 0.5);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.6), 0 0 25px rgba(184, 137, 45, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
