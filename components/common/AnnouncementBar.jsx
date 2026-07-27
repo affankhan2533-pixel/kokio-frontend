@@ -27,7 +27,7 @@ export default function AnnouncementBar({ scrolled = false }) {
       className={`w-full transition-all duration-500 ease-in-out relative z-50 ${
         scrolled
           ? 'max-h-0 opacity-0 py-0 overflow-hidden border-none'
-          : 'max-h-12 opacity-100 py-2.5 px-4 md:px-8 bg-[#0D0D0D]/90 backdrop-blur-md border-b border-white/10 text-[#EFEAE2]'
+          : 'hidden md:flex h-[34px] opacity-100 py-1.5 px-4 md:px-8 bg-[#0D0D0D]/95 backdrop-blur-md border-b border-white/10 text-[#EFEAE2] select-none items-center justify-between'
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">

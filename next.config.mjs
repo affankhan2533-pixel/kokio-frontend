@@ -22,6 +22,13 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  webpack: (config, { dev }) => {
+    if (dev) {
+      // Permanent fix for Webpack HMR module resolution mismatch during development
+      config.optimization.moduleIds = 'named';
+    }
+    return config;
+  },
 };
 
 export default nextConfig;

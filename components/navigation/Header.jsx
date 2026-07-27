@@ -141,17 +141,28 @@ export default function Header() {
           scrolled ? 'py-3' : 'py-4 md:py-5'
         }`}>
           
-          {/* Left: KOKIO Wordmark */}
-          <div className="flex flex-col items-start cursor-pointer group">
-            <a href="#" className="flex flex-col items-start">
-              <span className={`font-serif tracking-[0.35em] text-2xl md:text-3xl font-light transition-colors duration-300 ${
-                scrolled ? 'text-[#161616] group-hover:text-[#B8892D]' : 'text-[#F8F6F2] group-hover:text-[#B8892D]'
-              }`}>
-                K O K I O
+          {/* Left: KOKIO Wordmark (Single Line Guarantee Across All Mobile Breakpoints) */}
+          <div className="flex flex-col items-start shrink-0 min-w-fit cursor-pointer group">
+            <a href="#" className="flex flex-col items-start shrink-0 whitespace-nowrap select-none">
+              <span
+                className={`font-serif uppercase font-light leading-none whitespace-nowrap shrink-0 transition-colors duration-300 ${
+                  scrolled ? 'text-[#161616] group-hover:text-[#B8892D]' : 'text-[#F8F6F2] group-hover:text-[#B8892D]'
+                }`}
+                style={{
+                  fontSize: 'clamp(1.2rem, 4.5vw, 1.875rem)',
+                  letterSpacing: 'clamp(0.22em, 1.2vw, 0.35em)',
+                }}
+              >
+                KOKIO
               </span>
-              <span className={`text-[8px] md:text-[9px] tracking-[0.45em] font-light uppercase -mt-0.5 transition-colors ${
-                scrolled ? 'text-[#666666] group-hover:text-[#B8892D]' : 'text-[#EFEAE2]/80 group-hover:text-[#B8892D]'
-              }`}>
+              <span
+                className={`font-light uppercase tracking-[0.32em] sm:tracking-[0.45em] whitespace-nowrap shrink-0 transition-colors mt-0.5 ${
+                  scrolled ? 'text-[#666666] group-hover:text-[#B8892D]' : 'text-[#EFEAE2]/80 group-hover:text-[#B8892D]'
+                }`}
+                style={{
+                  fontSize: 'clamp(0.48rem, 1.8vw, 0.5625rem)',
+                }}
+              >
                 HAUT VOYAGE • PARIS
               </span>
             </a>
@@ -379,8 +390,8 @@ export default function Header() {
             >
               {/* Top Mobile Bar */}
               <div className="flex items-center justify-between border-b border-[rgba(0,0,0,0.08)] pb-4">
-                <span className="font-serif tracking-[0.35em] text-2xl font-light text-[#161616]">
-                  K O K I O
+                <span className="font-serif tracking-[0.35em] text-2xl font-light text-[#161616] whitespace-nowrap shrink-0">
+                  KOKIO
                 </span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}

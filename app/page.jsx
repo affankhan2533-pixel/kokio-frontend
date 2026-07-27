@@ -9,6 +9,7 @@ import CraftsmanshipTimeline from '@sections/craftsmanship/CraftsmanshipTimeline
 import MaterialsShowcase from '@sections/materials/MaterialsShowcase';
 import TravelLifestyleGallery from '@sections/gallery/TravelLifestyleGallery';
 import AsymmetricCollections from '@sections/featured/AsymmetricCollections';
+import BestSellers from '@sections/bestsellers/BestSellers';
 import BestSellersEditorial from '@sections/bestsellers/BestSellersEditorial';
 import CustomerStories from '@sections/testimonials/CustomerStories';
 import EditorialJournal from '@sections/journal/EditorialJournal';
@@ -57,7 +58,10 @@ export default function Home() {
           {/* 9. Featured Collections with Asymmetric Magazine Layouts */}
           <AsymmetricCollections />
 
-          {/* 10. Voyager Best Sellers */}
+          {/* 10. Signature Pieces */}
+          <BestSellers />
+
+          {/* 11. Curated Voyage Catalog */}
           <BestSellersEditorial />
 
           {/* 11. Customer Stories & Testimonials */}
