@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, Suspense } from 'react';
+import React, { useRef, Suspense, Component } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, ContactShadows, Environment, PresentationControls } from '@react-three/drei';
 import { use3DStore } from '@store/use3DStore';
@@ -149,6 +149,43 @@ function FlagshipLuggageModel() {
   );
 }
 
+class WebGLErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("WebGL error caught by boundary:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
+
+function StaticFallbackImage() {
+  return (
+    <div className="w-full h-full flex flex-col items-center justify-center bg-[#EFEAE2]/30 rounded-3xl border border-black/10 p-8">
+      <img
+        src="/images/monolith.png"
+        alt="The Monolith Carry-On 35L"
+        className="max-h-[80%] object-contain transition-transform duration-500 hover:scale-[1.03]"
+      />
+      <span className="text-[10px] tracking-[0.25em] font-mono font-bold text-[#B8892D] uppercase mt-4">
+        3D PREVIEW ACTIVE (STATIC FALLBACK LOADED)
+      </span>
+    </div>
+  );
+}
+
 function CanvasLoader() {
   return (
     <div className="flex flex-col items-center justify-center h-full w-full">
@@ -163,43 +200,45 @@ function CanvasLoader() {
 export default function HeroLuggageCanvas() {
   return (
     <div className="w-full h-[380px] sm:h-[480px] md:h-[540px] lg:h-[600px] relative pointer-events-auto cursor-grab active:cursor-grabbing">
-      <Suspense fallback={<CanvasLoader />}>
-        <Canvas
-          shadows
-          dpr={[1, 1.5]}
-          camera={{ position: [0, 0.45, 5.2], fov: 39 }}
-          gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-          className="w-full h-full"
-        >
-          <ambientLight intensity={0.85} />
-          <directionalLight position={[8, 12, 10]} intensity={2.0} castShadow shadow-mapSize={1024} />
-          <directionalLight position={[-10, 6, -5]} intensity={1.0} color="#c5a059" />
-
-          <PresentationControls
-            global={false}
-            config={{ mass: 2, tension: 350 }}
-            snap={{ mass: 4, tension: 250 }}
-            rotation={[0.12, 0.35, 0]}
-            polar={[-Math.PI / 6, Math.PI / 6]}
-            azimuth={[-Math.PI / 4, Math.PI / 4]}
+      <WebGLErrorBoundary fallback={<StaticFallbackImage />}>
+        <Suspense fallback={<CanvasLoader />}>
+          <Canvas
+            shadows
+            dpr={[1, 1.5]}
+            camera={{ position: [0, 0.45, 5.2], fov: 39 }}
+            gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+            className="w-full h-full"
           >
-            <Float speed={1.8} rotationIntensity={0.15} floatIntensity={0.3}>
-              <FlagshipLuggageModel />
-            </Float>
-          </PresentationControls>
+            <ambientLight intensity={0.85} />
+            <directionalLight position={[8, 12, 10]} intensity={2.0} castShadow shadow-mapSize={1024} />
+            <directionalLight position={[-10, 6, -5]} intensity={1.0} color="#c5a059" />
 
-          <ContactShadows
-            position={[0, -1.68, 0]}
-            opacity={0.65}
-            scale={7}
-            blur={2.2}
-            far={4}
-            color="#000000"
-          />
+            <PresentationControls
+              global={false}
+              config={{ mass: 2, tension: 350 }}
+              snap={{ mass: 4, tension: 250 }}
+              rotation={[0.12, 0.35, 0]}
+              polar={[-Math.PI / 6, Math.PI / 6]}
+              azimuth={[-Math.PI / 4, Math.PI / 4]}
+            >
+              <Float speed={1.8} rotationIntensity={0.15} floatIntensity={0.3}>
+                <FlagshipLuggageModel />
+              </Float>
+            </PresentationControls>
 
-          <Environment preset="city" />
-        </Canvas>
-      </Suspense>
+            <ContactShadows
+              position={[0, -1.68, 0]}
+              opacity={0.65}
+              scale={7}
+              blur={2.2}
+              far={4}
+              color="#000000"
+            />
+
+            <Environment preset="city" />
+          </Canvas>
+        </Suspense>
+      </WebGLErrorBoundary>
     </div>
   );
 }

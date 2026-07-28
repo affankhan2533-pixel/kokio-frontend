@@ -64,8 +64,7 @@ export default function HeroVideoSection() {
               videoLoaded ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <source src="/videos/hero_cinematic.webm" type="video/webm" />
-            <source src="/videos/hero_cinematic.mp4" type="video/mp4" />
+            <source src="/video/Man_pulling_KOKIO_suitcase_airport_202607271511 (online-video-cutter.com).mp4" type="video/mp4" />
           </video>
         )}
       </motion.div>
