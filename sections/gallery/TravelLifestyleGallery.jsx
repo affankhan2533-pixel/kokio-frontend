@@ -183,41 +183,42 @@ export default function TravelLifestyleGallery() {
                   alt={item.title}
                   className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-90 group-hover:opacity-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/90 via-[#111111]/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/95 via-[#0A0A0A]/45 via-55% to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
 
-                {/* Top Badge */}
-                <div className="absolute top-5 left-5 right-5 flex items-center justify-between z-10">
-                  <span className="text-[9px] tracking-[0.25em] font-semibold uppercase px-3 py-1 bg-[#111111]/80 backdrop-blur-md text-[#F8F6F2] rounded-full border border-white/20">
+                {/* Top Badges */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+                  <span className="text-[9px] tracking-[0.22em] font-mono uppercase font-semibold px-3 py-1 bg-[#0A0A0A]/80 backdrop-blur-md text-[#F8F6F2] rounded-full border border-white/15 shadow-sm">
                     {item.tag}
                   </span>
-                  <span className="font-serif text-lg text-[#161616] font-semibold px-3.5 py-1 bg-[#F8F6F2]/95 backdrop-blur-md border border-[rgba(0,0,0,0.08)] rounded-full shadow-md">
+                  <span className="font-serif text-sm sm:text-base text-[#161616] font-semibold px-3.5 py-1 bg-[#F8F6F2]/95 backdrop-blur-md border border-white/30 rounded-full shadow-md">
                     {item.price}
                   </span>
                 </div>
 
-                {/* Bottom Details & Quick Add */}
-                <div className="absolute bottom-6 left-6 right-6 text-white space-y-3 z-10">
-                  <div>
-                    <span className="text-[9px] tracking-[0.3em] font-semibold text-[#B8892D] uppercase">
-                      {item.category}
-                    </span>
-                    <h3 className="font-serif text-xl sm:text-2xl font-light leading-snug tracking-tight text-[#F8F6F2]">
+                {/* Bottom Details & Quick Add (Beautifully Aligned Layout) */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 flex items-end justify-between gap-4 z-10 text-white">
+                  <div className="flex-1 min-w-0 space-y-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-2.5 h-[1.5px] bg-[#B8892D]" />
+                      <span className="text-[9px] sm:text-[10px] tracking-[0.25em] font-mono font-semibold text-[#D4AF37] uppercase">
+                        {item.category}
+                      </span>
+                    </div>
+                    <h3 className="font-serif text-lg sm:text-2xl font-light leading-snug tracking-tight text-[#F8F6F2] group-hover:text-white transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-[#EFEAE2]/80 font-light mt-0.5 opacity-90">
+                    <p className="text-[11px] sm:text-xs text-[#EFEAE2]/80 font-light leading-relaxed line-clamp-2">
                       {item.subtitle}
                     </p>
                   </div>
 
-                  <div className="pt-2 flex items-center justify-end">
-                    <button
-                      onClick={() => handleQuickAdd(item)}
-                      className="p-3 bg-[#F8F6F2] hover:bg-[#B8892D] text-[#161616] rounded-full transition-all duration-300 shadow-md hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
-                      aria-label="Add to Bag"
-                    >
-                      <ShoppingBag className="w-4 h-4 text-[#161616]" />
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => handleQuickAdd(item)}
+                    className="p-3 bg-[#F8F6F2] hover:bg-[#B8892D] text-[#161616] rounded-full transition-all duration-300 shadow-lg hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center shrink-0 self-end mb-0.5"
+                    aria-label="Add to Bag"
+                  >
+                    <ShoppingBag className="w-4 h-4 text-[#161616]" />
+                  </button>
                 </div>
               </motion.div>
             ))}

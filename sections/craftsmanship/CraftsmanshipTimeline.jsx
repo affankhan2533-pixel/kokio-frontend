@@ -183,7 +183,7 @@ export default function CraftsmanshipTimeline() {
   return (
     <section
       ref={sectionRef}
-      id="craftsmanship-timeline"
+      id="craftsmanship"
       className="relative bg-[#EFEAE2] text-[#161616] py-24 md:py-36 overflow-hidden border-t border-[rgba(0,0,0,0.08)]"
       aria-label="Craftsmanship Timeline"
     >
