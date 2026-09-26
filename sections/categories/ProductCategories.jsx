@@ -8,25 +8,25 @@ const CATEGORIES = [
     name: 'CABIN LUGGAGE',
     desc: 'Aerospace aluminum carry-on trunks engineered for international overhead bins.',
     count: '12 Models',
-    image: '/images/monolith.png',
+    image: '/images/kokio_monolith_carryon.jpg',
   },
   {
     name: 'EXTENDED TRUNKS',
     desc: 'Deep-capacity aluminum trunks built for multi-week continental journeys.',
     count: '8 Models',
-    image: '/images/iceland.png',
+    image: '/images/kokio_titanium_trunk.jpg',
   },
   {
-    name: 'LEATHER DUFFELS',
-    desc: 'Full-grain Italian leather weekender bags with carbon-reinforced handles.',
-    count: '14 Models',
-    image: '/images/duffel.png',
+    name: 'BAGS & BACKPACKS',
+    desc: 'College satchels, school backpacks & Tuscan leather weekenders.',
+    count: '16 Models',
+    image: '/images/kokio_college_bag.jpg',
   },
   {
     name: 'BESPOKE ACCESSORIES',
     desc: 'Passport folios, leather luggage tags, and modular packing organizers.',
     count: '24 Items',
-    image: '/images/craftsmanship.png',
+    image: '/images/kokio_passport_folio.jpg',
   },
 ];
 
@@ -66,7 +66,7 @@ export default function ProductCategories() {
               <img
                 src={cat.image}
                 alt={cat.name}
-                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-95"
+                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.025] transition-transform duration-700 opacity-80 group-hover:opacity-95"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/30 to-transparent" />
 

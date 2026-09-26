@@ -19,9 +19,9 @@ export default function Footer() {
               Engineered for the discerning voyager. Aerospace-grade aluminum luggage and Italian vachetta leather goods built for a lifetime of movement.
             </p>
             <div className="pt-2 flex items-center gap-4 text-xs text-neutral-400">
-              <span className="flex items-center gap-1 text-amber-400">
+              <span className="flex items-center gap-1 text-[#B8892D]">
                 <ShieldCheck className="w-4 h-4" />
-                LIFETIME GUARANTEE
+                KOKIO CARE WARRANTY
               </span>
               <span>•</span>
               <span className="flex items-center gap-1 hover:text-white transition-colors cursor-pointer">
@@ -37,10 +37,10 @@ export default function Footer() {
               FLAGSHIP BOUTIQUES
             </h4>
             <ul className="space-y-2 text-xs text-neutral-400 font-light">
-              <li className="hover:text-amber-300 transition-colors cursor-pointer">PARIS — Place Vendôme</li>
-              <li className="hover:text-amber-300 transition-colors cursor-pointer">NEW YORK — Madison Avenue</li>
-              <li className="hover:text-amber-300 transition-colors cursor-pointer">TOKYO — Ginza Six</li>
-              <li className="hover:text-amber-300 transition-colors cursor-pointer">MUMBAI — Jio World Plaza</li>
+              <li className="hover:text-[#B8892D] transition-colors cursor-pointer">PARIS — Place Vendôme</li>
+              <li className="hover:text-[#B8892D] transition-colors cursor-pointer">NEW YORK — Madison Avenue</li>
+              <li className="hover:text-[#B8892D] transition-colors cursor-pointer">TOKYO — Ginza Six</li>
+              <li className="hover:text-[#B8892D] transition-colors cursor-pointer">MUMBAI — Jio World Plaza</li>
             </ul>
           </div>
 
@@ -50,10 +50,10 @@ export default function Footer() {
               CUSTOMER CARE
             </h4>
             <ul className="space-y-2 text-xs text-neutral-400 font-light">
-              <li className="hover:text-amber-300 transition-colors cursor-pointer">Private Concierge</li>
-              <li className="hover:text-amber-300 transition-colors cursor-pointer">Warranty & Repair Registration</li>
-              <li className="hover:text-amber-300 transition-colors cursor-pointer">Complimentary Monogramming</li>
-              <li className="hover:text-amber-300 transition-colors cursor-pointer">Global Express Shipping</li>
+              <li className="hover:text-[#B8892D] transition-colors cursor-pointer">Client Advisory Support</li>
+              <li className="hover:text-[#B8892D] transition-colors cursor-pointer">Warranty & Repair Registration</li>
+              <li className="hover:text-[#B8892D] transition-colors cursor-pointer">Bespoke Monogramming</li>
+              <li className="hover:text-[#B8892D] transition-colors cursor-pointer">Insured Express Delivery</li>
             </ul>
           </div>
 

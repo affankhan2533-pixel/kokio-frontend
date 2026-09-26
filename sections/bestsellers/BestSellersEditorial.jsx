@@ -196,7 +196,7 @@ export default function BestSellersEditorial() {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-6 py-2.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-300 cursor-pointer shrink-0 border ${
+                  className={`px-6 py-2.5 rounded-full text-xs font-sans tracking-[0.14em] uppercase text-xs tracking-widest uppercase transition-all duration-300 cursor-pointer shrink-0 border ${
                     isActive
                       ? 'border-[#B8892D] text-[#161616] font-semibold bg-[#B8892D]/10 shadow-xs'
                       : 'border-[rgba(0,0,0,0.12)] text-[#666666] hover:border-[#B8892D]/50 hover:text-[#161616]'
@@ -240,7 +240,7 @@ export default function BestSellersEditorial() {
                     />
 
                     {/* Subtle Overlay Tag */}
-                    <div className="absolute top-4 left-4 bg-[#161616]/75 backdrop-blur-md px-3 py-1.5 rounded-lg text-[10px] font-mono text-white/90 tracking-widest uppercase border border-white/10">
+                    <div className="absolute top-4 left-4 bg-[#161616]/75 backdrop-blur-md px-3 py-1.5 rounded-lg text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-white/90 tracking-widest uppercase border border-white/10">
                       {product.categoryLabel}
                     </div>
 
@@ -261,7 +261,7 @@ export default function BestSellersEditorial() {
                   {/* Editorial Card Content */}
                   <div className={`p-8 space-y-4 flex-1 flex flex-col justify-between ${product.alignment}`}>
                     <div className="space-y-2">
-                      <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#B8892D] uppercase block">
+                      <span className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-[0.25em] text-[#B8892D] uppercase block">
                         {product.tag}
                       </span>
 
@@ -279,7 +279,7 @@ export default function BestSellersEditorial() {
                     {/* Specs & Pricing Footer */}
                     <div className="pt-6 border-t border-[rgba(0,0,0,0.06)] flex items-center justify-between gap-4">
                       <div className="space-y-0.5">
-                        <span className="text-[10px] font-mono text-[#888888] tracking-wider uppercase block">
+                        <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-[#888888] tracking-wider uppercase block">
                           STARTING AT
                         </span>
                         <span className="font-serif text-xl font-semibold text-[#161616]">
@@ -289,7 +289,7 @@ export default function BestSellersEditorial() {
 
                       <button
                         onClick={() => setSelectedProduct(product)}
-                        className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#161616] group-hover:text-[#B8892D] uppercase transition-colors"
+                        className="inline-flex items-center gap-2 text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-widest text-[#161616] group-hover:text-[#B8892D] uppercase transition-colors"
                       >
                         <span>EXPLORE</span>
                         <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -345,7 +345,7 @@ export default function BestSellersEditorial() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center"
                   />
-                  <div className="absolute top-4 left-4 bg-[#161616]/80 text-white text-[10px] font-mono px-3 py-1 rounded-md tracking-wider">
+                  <div className="absolute top-4 left-4 bg-[#161616]/80 text-white text-[10px] font-sans tracking-[0.14em] uppercase text-xs px-3 py-1 rounded-md tracking-wider">
                     {selectedProduct.specs}
                   </div>
                 </div>
@@ -353,7 +353,7 @@ export default function BestSellersEditorial() {
                 {/* Modal Info & Engineering Highlights */}
                 <div className="md:col-span-6 space-y-6">
                   <div className="space-y-2">
-                    <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#B8892D] uppercase block">
+                    <span className="text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-[0.25em] text-[#B8892D] uppercase block">
                       {selectedProduct.tag}
                     </span>
                     <h3 className="font-serif text-3xl font-light text-[#161616]">
@@ -366,7 +366,7 @@ export default function BestSellersEditorial() {
 
                   {/* Highlights List */}
                   <div className="space-y-2 pt-2 border-t border-[rgba(0,0,0,0.08)]">
-                    <span className="text-[11px] font-mono text-[#888888] uppercase tracking-wider block font-semibold">
+                    <span className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs text-[#888888] uppercase tracking-wider block font-semibold">
                       METROLOGY SPECIFICATIONS
                     </span>
                     {selectedProduct.highlights.map((item, i) => (
@@ -382,7 +382,7 @@ export default function BestSellersEditorial() {
                   {/* Price & Action */}
                   <div className="pt-4 border-t border-[rgba(0,0,0,0.08)] flex items-center justify-between gap-4">
                     <div>
-                      <span className="text-[10px] font-mono text-[#888888] uppercase block">PRICE</span>
+                      <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-[#888888] uppercase block">PRICE</span>
                       <span className="font-serif text-2xl font-semibold text-[#161616]">
                         {selectedProduct.price}
                       </span>

@@ -200,7 +200,7 @@ export default function MaterialsShowcase() {
                       </div>
 
                       <div className="space-y-0.5">
-                        <span className="text-[10px] font-mono tracking-widest text-[#B8892D] font-bold block">
+                        <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs tracking-widest text-[#B8892D] font-bold block">
                           MATERIAL {mat.number}
                         </span>
                         <span className="font-serif text-sm md:text-base font-medium tracking-tight block text-[#161616]">
@@ -233,7 +233,7 @@ export default function MaterialsShowcase() {
                 className="space-y-6 bg-white p-8 rounded-3xl border border-[rgba(0,0,0,0.08)] shadow-[0_20px_50px_rgba(0,0,0,0.04)]"
               >
                 <div className="space-y-2">
-                  <span className="text-xs font-mono tracking-[0.25em] text-[#B8892D] font-bold uppercase block">
+                  <span className="text-xs font-sans tracking-[0.14em] uppercase text-xs tracking-[0.25em] text-[#B8892D] font-bold uppercase block">
                     {activeMaterial.subtitle}
                   </span>
                   <h3 className="font-serif text-2xl md:text-3xl font-light text-[#161616] leading-tight">
@@ -247,7 +247,7 @@ export default function MaterialsShowcase() {
 
                 {/* Key Benefits List */}
                 <div className="space-y-2.5 pt-2 border-t border-[rgba(0,0,0,0.06)]">
-                  <span className="text-[11px] font-mono text-[#888888] uppercase tracking-wider block font-semibold">
+                  <span className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs text-[#888888] uppercase tracking-wider block font-semibold">
                     ENGINEERING HIGHLIGHTS
                   </span>
                   <div className="grid grid-cols-1 gap-2">
@@ -273,7 +273,7 @@ export default function MaterialsShowcase() {
                       <span className="font-serif text-lg md:text-xl font-medium text-[#161616] block">
                         {stat.value}
                       </span>
-                      <span className="text-[10px] font-mono text-[#B8892D] font-bold uppercase block leading-none">
+                      <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-[#B8892D] font-bold uppercase block leading-none">
                         {stat.label}
                       </span>
                       <span className="text-[9px] text-[#777777] font-light block leading-tight">
@@ -297,7 +297,7 @@ export default function MaterialsShowcase() {
                   alt={activeMaterial.title}
                   fill
                   sizes="(max-width: 1024px) 100vw, 60vw"
-                  className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                  className="object-cover object-center transition-transform duration-1000 group-hover:scale-[1.02]"
                   priority
                 />
               </div>
@@ -312,13 +312,13 @@ export default function MaterialsShowcase() {
               />
 
               {/* Floating Macro Spec Badge */}
-              <div className="absolute top-6 left-6 bg-[#161616]/80 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 text-white text-xs font-mono flex items-center gap-2.5 shadow-lg">
+              <div className="absolute top-6 left-6 bg-[#161616]/80 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 text-white text-xs font-sans tracking-[0.14em] uppercase text-xs flex items-center gap-2.5 shadow-lg">
                 <span className="w-2 h-2 rounded-full bg-[#B8892D] animate-ping" />
                 <span className="tracking-widest">MACRO SPEC {activeMaterial.number} • 10X MAGNIFICATION</span>
               </div>
 
               {/* Floating Micro-Spec Pill */}
-              <div className="absolute bottom-6 left-6 right-6 bg-[#161616]/75 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/15 text-white flex items-center justify-between text-xs font-mono shadow-2xl">
+              <div className="absolute bottom-6 left-6 right-6 bg-[#161616]/75 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/15 text-white flex items-center justify-between text-xs font-sans tracking-[0.14em] uppercase text-xs shadow-2xl">
                 <span className="text-[#EFEAE2]/90 truncate max-w-[280px] sm:max-w-none">
                   {activeMaterial.specs}
                 </span>

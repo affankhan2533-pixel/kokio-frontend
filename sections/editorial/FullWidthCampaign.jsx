@@ -15,7 +15,7 @@ export default function FullWidthCampaign() {
     >
       {/* Full-Bleed Parallax Cinematic Background Image */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-40 mix-blend-luminosity scale-105 group-hover:scale-110 transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        className="absolute inset-0 z-0 bg-cover bg-center opacity-40 mix-blend-luminosity scale-[1.02] group-hover:scale-[1.025] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
         style={{ backgroundImage: `url('/images/iceland.png')` }}
       />
 

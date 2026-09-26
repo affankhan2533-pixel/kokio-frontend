@@ -180,7 +180,7 @@ export default function CustomerStories() {
 
             {/* Active Story Counter & Minimal Circular Navigation Arrows */}
             <div className="pt-6 border-t border-[rgba(0,0,0,0.08)] flex items-center justify-between">
-              <div className="flex items-baseline gap-2 font-mono">
+              <div className="flex items-baseline gap-2 font-sans tracking-[0.14em] uppercase text-xs">
                 <span className="text-2xl font-bold text-[#B8892D]">
                   {activeStory.number}
                 </span>
@@ -224,7 +224,7 @@ export default function CustomerStories() {
                   <h3 className="font-serif text-2xl text-[#161616] font-medium">
                     {activeStory.traveler}
                   </h3>
-                  <p className="text-xs font-mono text-[#B8892D] font-semibold tracking-wider uppercase mt-0.5">
+                  <p className="text-xs font-sans tracking-[0.14em] uppercase text-xs text-[#B8892D] font-semibold tracking-wider uppercase mt-0.5">
                     {activeStory.route}
                   </p>
                   <p className="text-xs text-[#777777] font-light mt-1">
@@ -234,7 +234,7 @@ export default function CustomerStories() {
 
                 {/* Editorial Traveled With Link (Requirement 3) */}
                 <div className="pt-3 border-t border-[rgba(0,0,0,0.06)]">
-                  <span className="text-[11px] font-mono tracking-widest text-[#888888] uppercase block">
+                  <span className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs tracking-widest text-[#888888] uppercase block">
                     Traveled With
                   </span>
                   <a
@@ -276,7 +276,7 @@ export default function CustomerStories() {
 
                 {/* Top Destination Badge */}
                 <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-10">
-                  <span className="text-[11px] font-mono tracking-widest uppercase px-3.5 py-1.5 rounded-lg bg-[#111111]/80 backdrop-blur-md text-[#EFEAE2] border border-white/10">
+                  <span className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs tracking-widest uppercase px-3.5 py-1.5 rounded-lg bg-[#111111]/80 backdrop-blur-md text-[#EFEAE2] border border-white/10">
                     {activeStory.destination}
                   </span>
                   <Sparkles className="w-4 h-4 text-[#B8892D]" />
@@ -298,7 +298,7 @@ export default function CustomerStories() {
                     
                     {/* Primary Highlight Metric */}
                     <div className="space-y-0.5">
-                      <span className="text-[10px] font-mono tracking-widest text-[#B8892D] uppercase block">
+                      <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs tracking-widest text-[#B8892D] uppercase block">
                         PRIMARY MILESTONE
                       </span>
                       <span className="font-serif text-2xl lg:text-3xl font-light text-white tracking-tight block">
@@ -307,7 +307,7 @@ export default function CustomerStories() {
                     </div>
 
                     {/* Secondary Editorial Metrics */}
-                    <div className="flex items-center gap-6 font-mono text-xs">
+                    <div className="flex items-center gap-6 font-sans tracking-[0.14em] uppercase text-xs text-xs">
                       {activeStory.secondaryStats.map((stat, i) => (
                         <div key={i} className="text-right">
                           <span className="text-white font-bold block">{stat.value}</span>
@@ -345,10 +345,10 @@ export default function CustomerStories() {
 
                 <div className="relative z-10 space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono tracking-widest text-[#B8892D] uppercase font-bold">
+                    <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs tracking-widest text-[#B8892D] uppercase font-bold">
                       {story.destination}
                     </span>
-                    <span className="text-[10px] font-mono text-white/70">
+                    <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-white/70">
                       {story.number} / 05
                     </span>
                   </div>
@@ -357,7 +357,7 @@ export default function CustomerStories() {
                     <h3 className="font-serif text-xl font-light text-white">
                       {story.traveler}
                     </h3>
-                    <p className="text-[11px] font-mono text-[#B8892D] tracking-wide">
+                    <p className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs text-[#B8892D] tracking-wide">
                       {story.route}
                     </p>
                   </div>
@@ -368,13 +368,13 @@ export default function CustomerStories() {
 
                   <div className="pt-3 border-t border-white/10 flex items-center justify-between">
                     <div>
-                      <span className="text-[9px] font-mono text-white/60 tracking-widest uppercase block">PRIMARY METRIC</span>
+                      <span className="text-[9px] font-sans tracking-[0.14em] uppercase text-xs text-white/60 tracking-widest uppercase block">PRIMARY METRIC</span>
                       <span className="font-serif text-base text-[#B8892D] font-medium">{story.primaryStat}</span>
                     </div>
 
                     <a
                       href="#catalog"
-                      className="inline-flex items-center gap-1 text-xs font-mono font-bold text-white uppercase"
+                      className="inline-flex items-center gap-1 text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold text-white uppercase"
                     >
                       <span>Traveled With</span>
                       <ArrowUpRight className="w-3.5 h-3.5 text-[#B8892D]" />

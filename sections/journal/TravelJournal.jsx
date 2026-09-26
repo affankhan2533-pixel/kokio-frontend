@@ -64,7 +64,7 @@ export default function TravelJournal() {
                 <img
                   src={art.image}
                   alt={art.title}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-90"
+                  className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700 opacity-90"
                 />
                 <div className="absolute top-4 left-4 bg-neutral-950 text-white px-3 py-1 rounded-full text-[10px] tracking-widest uppercase font-semibold shadow-md">
                   {art.category}

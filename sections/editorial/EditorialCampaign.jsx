@@ -9,7 +9,7 @@ export default function EditorialCampaign() {
       
       {/* Full-Bleed Parallax Background Image */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-40 mix-blend-luminosity scale-105"
+        className="absolute inset-0 z-0 bg-cover bg-center opacity-40 mix-blend-luminosity scale-[1.02]"
         style={{ backgroundImage: `url('/images/iceland.png')` }}
       />
 

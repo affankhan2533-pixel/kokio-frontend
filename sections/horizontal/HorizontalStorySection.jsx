@@ -113,7 +113,7 @@ export default function HorizontalStorySection() {
               <img
                 src={CHAPTERS_DATA[0].image}
                 alt={CHAPTERS_DATA[0].title}
-                className="w-full h-[400px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="w-full h-[400px] sm:h-[500px] object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
               />
               <div className="absolute top-6 left-6 px-4 py-1 bg-[#111111]/80 backdrop-blur-md rounded-full border border-white/20 text-[#F8F6F2] font-serif text-sm font-light">
                 CHAPTER 01
@@ -166,7 +166,7 @@ export default function HorizontalStorySection() {
               <img
                 src={CHAPTERS_DATA[1].image}
                 alt={CHAPTERS_DATA[1].title}
-                className="w-full h-[400px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="w-full h-[400px] sm:h-[500px] object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
               />
               <div className="absolute top-6 right-6 px-4 py-1 bg-[#111111]/80 backdrop-blur-md rounded-full border border-white/20 text-[#F8F6F2] font-serif text-sm font-light">
                 CHAPTER 02
@@ -221,7 +221,7 @@ export default function HorizontalStorySection() {
               <img
                 src={CHAPTERS_DATA[3].image}
                 alt={CHAPTERS_DATA[3].title}
-                className="w-full h-[400px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="w-full h-[400px] sm:h-[500px] object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
               />
               <div className="absolute top-6 left-6 px-4 py-1 bg-[#111111]/80 backdrop-blur-md rounded-full border border-white/20 text-[#F8F6F2] font-serif text-sm font-light">
                 CHAPTER 04

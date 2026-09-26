@@ -134,13 +134,13 @@ export default function EditorialJournal() {
                 className="object-cover object-center transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
                 loading="lazy"
               />
-              <div className="absolute top-4 left-4 bg-[#161616]/80 backdrop-blur-md px-3.5 py-1.5 rounded-lg text-[10px] font-mono text-[#F8F6F2] tracking-widest uppercase border border-white/10">
+              <div className="absolute top-4 left-4 bg-[#161616]/80 backdrop-blur-md px-3.5 py-1.5 rounded-lg text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-[#F8F6F2] tracking-widest uppercase border border-white/10">
                 COVER STORY
               </div>
             </div>
 
             {/* Clean Metadata Hierarchy (Requirement 3) */}
-            <div className="space-y-1 font-mono text-xs">
+            <div className="space-y-1 font-sans tracking-[0.14em] uppercase text-xs text-xs">
               <span className="text-[#B8892D] font-bold tracking-[0.25em] uppercase block">
                 {FEATURED_COVER_STORY.category}
               </span>
@@ -174,7 +174,7 @@ export default function EditorialJournal() {
             </div>
 
             {/* CTA */}
-            <div className="pt-2 inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] text-[#161616] group-hover:text-[#B8892D] uppercase transition-colors">
+            <div className="pt-2 inline-flex items-center gap-2 text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-[0.2em] text-[#161616] group-hover:text-[#B8892D] uppercase transition-colors">
               <span>{FEATURED_COVER_STORY.cta}</span>
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </div>
@@ -201,7 +201,7 @@ export default function EditorialJournal() {
                 </div>
 
                 {/* Clean Metadata Hierarchy */}
-                <div className="space-y-0.5 font-mono text-xs">
+                <div className="space-y-0.5 font-sans tracking-[0.14em] uppercase text-xs text-xs">
                   <span className="text-[#B8892D] font-bold tracking-[0.2em] uppercase block">
                     {story.category}
                   </span>
@@ -226,7 +226,7 @@ export default function EditorialJournal() {
                 </p>
 
                 {/* CTA */}
-                <div className="pt-1 inline-flex items-center gap-1.5 text-xs font-mono font-bold tracking-widest text-[#161616] group-hover:text-[#B8892D] uppercase transition-colors">
+                <div className="pt-1 inline-flex items-center gap-1.5 text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-widest text-[#161616] group-hover:text-[#B8892D] uppercase transition-colors">
                   <span>{story.cta}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </div>
@@ -249,16 +249,16 @@ export default function EditorialJournal() {
                 sizes="100vw"
                 className="object-cover object-center"
               />
-              <div className="absolute top-3 left-3 bg-[#161616]/80 backdrop-blur-md px-3 py-1 rounded-md text-[9px] font-mono text-[#F8F6F2] tracking-widest uppercase">
+              <div className="absolute top-3 left-3 bg-[#161616]/80 backdrop-blur-md px-3 py-1 rounded-md text-[9px] font-sans tracking-[0.14em] uppercase text-xs text-[#F8F6F2] tracking-widest uppercase">
                 COVER STORY
               </div>
             </div>
 
             <div className="space-y-2">
-              <span className="text-xs font-mono font-bold text-[#B8892D] tracking-widest uppercase block">
+              <span className="text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold text-[#B8892D] tracking-widest uppercase block">
                 {FEATURED_COVER_STORY.category}
               </span>
-              <div className="text-[10px] font-mono text-[#777777] tracking-widest uppercase">
+              <div className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-[#777777] tracking-widest uppercase">
                 {FEATURED_COVER_STORY.readTime} • {FEATURED_COVER_STORY.date}
               </div>
 
@@ -274,7 +274,7 @@ export default function EditorialJournal() {
                 {FEATURED_COVER_STORY.excerpt}
               </p>
 
-              <div className="pt-2 flex items-center gap-1.5 text-xs font-mono font-bold text-[#B8892D] uppercase">
+              <div className="pt-2 flex items-center gap-1.5 text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold text-[#B8892D] uppercase">
                 <span>{FEATURED_COVER_STORY.cta}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </div>
@@ -296,10 +296,10 @@ export default function EditorialJournal() {
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono font-bold text-[#B8892D] tracking-widest uppercase block">
+                  <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs font-bold text-[#B8892D] tracking-widest uppercase block">
                     {story.category}
                   </span>
-                  <div className="text-[10px] font-mono text-[#777777] tracking-widest uppercase">
+                  <div className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-[#777777] tracking-widest uppercase">
                     {story.readTime} • {story.date}
                   </div>
 
@@ -311,7 +311,7 @@ export default function EditorialJournal() {
                     {story.excerpt}
                   </p>
 
-                  <div className="pt-1 flex items-center gap-1 text-xs font-mono font-bold text-[#B8892D] uppercase">
+                  <div className="pt-1 flex items-center gap-1 text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold text-[#B8892D] uppercase">
                     <span>{story.cta}</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>

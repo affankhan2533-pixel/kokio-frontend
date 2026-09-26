@@ -37,7 +37,7 @@ export default function InstagramGallery() {
               <img
                 src={img}
                 alt={`Kokio travel moment ${i + 1}`}
-                className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 opacity-90"
+                className="w-full h-full object-cover object-center group-hover:scale-[1.025] transition-transform duration-700 opacity-90"
               />
               <div className="absolute inset-0 bg-neutral-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <Instagram className="w-6 h-6 text-white" />

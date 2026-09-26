@@ -199,10 +199,10 @@ export default function AsymmetricCollections() {
 
                   {/* Top Bar Badges */}
                   <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-10">
-                    <span className={`text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-lg backdrop-blur-md border ${col.theme.tagBg}`}>
+                    <span className={`text-[10px] font-sans tracking-[0.14em] uppercase text-xs tracking-widest uppercase px-3 py-1.5 rounded-lg backdrop-blur-md border ${col.theme.tagBg}`}>
                       {col.category}
                     </span>
-                    <span className="text-xs font-mono font-bold text-[#EFEAE2]/80 tracking-widest">
+                    <span className="text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold text-[#EFEAE2]/80 tracking-widest">
                       {col.count}
                     </span>
                   </div>
@@ -212,7 +212,7 @@ export default function AsymmetricCollections() {
                     <div className="space-y-3 transform transition-transform duration-500 group-hover:-translate-y-1">
                       
                       <div className="flex items-center gap-2">
-                        <span className={`text-xs font-mono font-bold tracking-[0.25em] ${col.theme.accent}`}>
+                        <span className={`text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-[0.25em] ${col.theme.accent}`}>
                           SERIES {col.number}
                         </span>
                         <span className="w-8 h-[1px] bg-white/20" />
@@ -236,7 +236,7 @@ export default function AsymmetricCollections() {
                       </p>
 
                       {/* Editorial CTA */}
-                      <div className="pt-4 flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] text-[#EFEAE2] group-hover:text-[#B8892D] uppercase transition-colors">
+                      <div className="pt-4 flex items-center gap-2 text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-[0.2em] text-[#EFEAE2] group-hover:text-[#B8892D] uppercase transition-colors">
                         <span>{col.cta}</span>
                         <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </div>
@@ -273,10 +273,10 @@ export default function AsymmetricCollections() {
 
                   <div className="relative z-10 space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className={`text-[10px] font-mono tracking-widest font-bold ${col.theme.accent}`}>
+                      <span className={`text-[10px] font-sans tracking-[0.14em] uppercase text-xs tracking-widest font-bold ${col.theme.accent}`}>
                         SERIES {col.number}
                       </span>
-                      <span className="text-[10px] font-mono text-white/70">
+                      <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-white/70">
                         {col.count}
                       </span>
                     </div>
@@ -289,7 +289,7 @@ export default function AsymmetricCollections() {
                       {col.philosophy}
                     </p>
 
-                    <div className="pt-2 flex items-center gap-2 text-xs font-mono font-bold text-[#B8892D] uppercase">
+                    <div className="pt-2 flex items-center gap-2 text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold text-[#B8892D] uppercase">
                       <span>{col.cta}</span>
                       <ArrowUpRight className="w-4 h-4" />
                     </div>

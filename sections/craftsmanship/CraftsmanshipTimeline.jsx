@@ -192,7 +192,7 @@ export default function CraftsmanshipTimeline() {
         <div className="flex items-center justify-between text-xs">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#B8892D] animate-pulse" />
-            <span className="font-mono text-[#B8892D] tracking-widest font-semibold">
+            <span className="font-sans tracking-[0.14em] uppercase text-xs text-[#B8892D] tracking-widest font-semibold">
               STAGE {STAGES[activeStage].number} / 06
             </span>
           </div>
@@ -279,13 +279,13 @@ export default function CraftsmanshipTimeline() {
                               alt={stage.title}
                               fill
                               sizes="(max-width: 768px) 100vw, 50vw"
-                              className="stage-img object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                              className="stage-img object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
                               loading="lazy"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#161616]/80 via-transparent to-transparent" />
                             
                             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-[#EFEAE2]/80 bg-[#161616]/60 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10">
-                              <span className="font-mono tracking-wider">SERIAL NO. KOKIO-2026-N1</span>
+                              <span className="font-sans tracking-[0.14em] uppercase text-xs tracking-wider">SERIAL NO. KOKIO-2026-N1</span>
                               <span className="flex items-center gap-1.5 text-[#B8892D] font-semibold">
                                 <CheckCircle2 className="w-4 h-4" /> PASSED AUDIT
                               </span>
@@ -296,7 +296,7 @@ export default function CraftsmanshipTimeline() {
                         {/* Text & Story */}
                         <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
                           <div className="flex items-center gap-3">
-                            <span className="text-xs font-mono font-bold tracking-[0.3em] text-[#B8892D] uppercase px-3 py-1 bg-[#B8892D]/10 rounded-md border border-[#B8892D]/30">
+                            <span className="text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-[0.3em] text-[#B8892D] uppercase px-3 py-1 bg-[#B8892D]/10 rounded-md border border-[#B8892D]/30">
                               STAGE {stage.number} • {stage.category}
                             </span>
                           </div>
@@ -345,9 +345,9 @@ export default function CraftsmanshipTimeline() {
                   <div className="hidden md:flex absolute left-1/2 top-10 -translate-x-1/2 z-20 items-center justify-center">
                     <div
                       ref={(el) => (nodesRef.current[idx] = el)}
-                      className={`w-10 h-10 rounded-full border-2 transition-all duration-500 flex items-center justify-center font-mono text-xs font-bold ${
+                      className={`w-10 h-10 rounded-full border-2 transition-all duration-500 flex items-center justify-center font-sans tracking-[0.14em] uppercase text-xs text-xs font-bold ${
                         isActive
-                          ? 'bg-[#B8892D] border-[#D4AF37] text-[#161616] shadow-[0_0_18px_rgba(184,137,45,0.6)] scale-110'
+                          ? 'bg-[#B8892D] border-[#D4AF37] text-[#161616] shadow-[0_0_18px_rgba(184,137,45,0.6)] scale-[1.025]'
                           : isCompleted
                           ? 'bg-[#B8892D]/80 border-[#B8892D] text-[#161616] shadow-2xs'
                           : 'bg-[#EFEAE2] border-[#B8892D]/40 text-[#B8892D]'
@@ -371,13 +371,13 @@ export default function CraftsmanshipTimeline() {
                           alt={stage.title}
                           fill
                           sizes="(max-width: 768px) 100vw, 50vw"
-                          className="stage-img object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                          className="stage-img object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
                           loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#161616]/40 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
 
                         {/* Subtle Badge Overlay */}
-                        <div className="absolute top-4 left-4 bg-[#161616]/70 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 text-white/90 text-xs font-mono flex items-center gap-2">
+                        <div className="absolute top-4 left-4 bg-[#161616]/70 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 text-white/90 text-xs font-sans tracking-[0.14em] uppercase text-xs flex items-center gap-2">
                           <StageIcon className="w-3.5 h-3.5 text-[#B8892D]" />
                           <span>STAGE {stage.number}</span>
                         </div>
@@ -397,7 +397,7 @@ export default function CraftsmanshipTimeline() {
                         </span>
 
                         <div className="relative z-10 space-y-4">
-                          <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#B8892D] uppercase block">
+                          <span className="text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-[0.25em] text-[#B8892D] uppercase block">
                             {stage.category}
                           </span>
 

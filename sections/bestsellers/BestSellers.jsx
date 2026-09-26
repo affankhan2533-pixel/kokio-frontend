@@ -170,7 +170,7 @@ export default function BestSellers() {
                 />
                 
                 {/* Subtle Image Tag */}
-                <div className="absolute top-4 left-4 bg-[#161616]/75 backdrop-blur-md px-3.5 py-1.5 rounded-lg text-[10px] font-mono text-white tracking-widest uppercase border border-white/10">
+                <div className="absolute top-4 left-4 bg-[#161616]/75 backdrop-blur-md px-3.5 py-1.5 rounded-lg text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-white tracking-widest uppercase border border-white/10">
                   {piece.number} • ICONIC CREATION
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default function BestSellers() {
               {/* Card Body */}
               <div className="p-8 space-y-5 flex-1 flex flex-col justify-between">
                 <div className="space-y-3">
-                  <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#B8892D] uppercase block">
+                  <span className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-[0.25em] text-[#B8892D] uppercase block">
                     {piece.label}
                   </span>
 
@@ -210,7 +210,7 @@ export default function BestSellers() {
 
                   <button
                     onClick={() => handleAddToCart(piece)}
-                    className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#161616] group-hover:text-[#B8892D] uppercase transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-widest text-[#161616] group-hover:text-[#B8892D] uppercase transition-colors cursor-pointer"
                   >
                     <span>{piece.cta}</span>
                     <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -241,14 +241,14 @@ export default function BestSellers() {
                     sizes="85vw"
                     className="object-cover object-center"
                   />
-                  <div className="absolute top-4 left-4 bg-[#161616]/75 backdrop-blur-md px-3 py-1 rounded-lg text-[10px] font-mono text-white tracking-widest uppercase">
+                  <div className="absolute top-4 left-4 bg-[#161616]/75 backdrop-blur-md px-3 py-1 rounded-lg text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-white tracking-widest uppercase">
                     {piece.number} • SIGNATURE
                   </div>
                 </div>
 
                 <div className="p-6 space-y-4">
                   <div className="space-y-1.5">
-                    <span className="text-[10px] font-mono font-bold tracking-widest text-[#B8892D] uppercase block">
+                    <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-widest text-[#B8892D] uppercase block">
                       {piece.label}
                     </span>
                     <h3 className="font-serif text-2xl font-light text-[#161616]">
@@ -271,7 +271,7 @@ export default function BestSellers() {
 
                     <button
                       onClick={() => handleAddToCart(piece)}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#B8892D] uppercase"
+                      className="inline-flex items-center gap-1.5 text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold text-[#B8892D] uppercase"
                     >
                       <span>{piece.cta}</span>
                       <ArrowUpRight className="w-4 h-4" />

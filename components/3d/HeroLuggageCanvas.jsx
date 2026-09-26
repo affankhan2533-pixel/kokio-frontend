@@ -179,7 +179,7 @@ function StaticFallbackImage() {
         alt="The Monolith Carry-On 35L"
         className="max-h-[80%] object-contain transition-transform duration-500 hover:scale-[1.03]"
       />
-      <span className="text-[10px] tracking-[0.25em] font-mono font-bold text-[#B8892D] uppercase mt-4">
+      <span className="text-[10px] tracking-[0.25em] font-sans tracking-[0.14em] uppercase text-xs font-bold text-[#B8892D] uppercase mt-4">
         3D PREVIEW ACTIVE (STATIC FALLBACK LOADED)
       </span>
     </div>

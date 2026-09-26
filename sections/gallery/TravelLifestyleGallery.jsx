@@ -187,7 +187,7 @@ export default function TravelLifestyleGallery() {
 
                 {/* Top Badges */}
                 <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                  <span className="text-[9px] tracking-[0.22em] font-mono uppercase font-semibold px-3 py-1 bg-[#0A0A0A]/80 backdrop-blur-md text-[#F8F6F2] rounded-full border border-white/15 shadow-sm">
+                  <span className="text-[9px] tracking-[0.22em] font-sans tracking-[0.14em] uppercase text-xs uppercase font-semibold px-3 py-1 bg-[#0A0A0A]/80 backdrop-blur-md text-[#F8F6F2] rounded-full border border-white/15 shadow-sm">
                     {item.tag}
                   </span>
                   <span className="font-serif text-sm sm:text-base text-[#161616] font-semibold px-3.5 py-1 bg-[#F8F6F2]/95 backdrop-blur-md border border-white/30 rounded-full shadow-md">
@@ -200,7 +200,7 @@ export default function TravelLifestyleGallery() {
                   <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="w-2.5 h-[1.5px] bg-[#B8892D]" />
-                      <span className="text-[9px] sm:text-[10px] tracking-[0.25em] font-mono font-semibold text-[#D4AF37] uppercase">
+                      <span className="text-[9px] sm:text-[10px] tracking-[0.25em] font-sans tracking-[0.14em] uppercase text-xs font-semibold text-[#D4AF37] uppercase">
                         {item.category}
                       </span>
                     </div>
@@ -214,7 +214,7 @@ export default function TravelLifestyleGallery() {
 
                   <button
                     onClick={() => handleQuickAdd(item)}
-                    className="p-3 bg-[#F8F6F2] hover:bg-[#B8892D] text-[#161616] rounded-full transition-all duration-300 shadow-lg hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center shrink-0 self-end mb-0.5"
+                    className="p-3 bg-[#F8F6F2] hover:bg-[#B8892D] text-[#161616] rounded-full transition-all duration-300 shadow-lg hover:scale-[1.025] active:scale-95 cursor-pointer flex items-center justify-center shrink-0 self-end mb-0.5"
                     aria-label="Add to Bag"
                   >
                     <ShoppingBag className="w-4 h-4 text-[#161616]" />

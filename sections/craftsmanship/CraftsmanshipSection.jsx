@@ -66,7 +66,7 @@ export default function CraftsmanshipSection() {
             <img
               src="/images/craftsmanship.png"
               alt="Craftsmanship detail"
-              className="w-full h-[480px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              className="w-full h-[480px] object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
             />
 
             {/* Inset Badge */}

@@ -1,80 +1,56 @@
 import SmoothScrollProvider from '@providers/SmoothScrollProvider';
 import Header from '@components/navigation/Header';
-import HeroVideoSection from '@sections/hero/HeroVideoSection';
-import ManifestoSection from '@sections/manifesto/ManifestoSection';
-import HorizontalStorySection from '@sections/horizontal/HorizontalStorySection';
-import FullWidthCampaign from '@sections/editorial/FullWidthCampaign';
-import InteractiveProductExp from '@sections/interactive/InteractiveProductExp';
-import CraftsmanshipTimeline from '@sections/craftsmanship/CraftsmanshipTimeline';
-import MaterialsShowcase from '@sections/materials/MaterialsShowcase';
-import TravelLifestyleGallery from '@sections/gallery/TravelLifestyleGallery';
-import AsymmetricCollections from '@sections/featured/AsymmetricCollections';
-import BestSellers from '@sections/bestsellers/BestSellers';
-import BestSellersEditorial from '@sections/bestsellers/BestSellersEditorial';
-import CustomerStories from '@sections/testimonials/CustomerStories';
-import EditorialJournal from '@sections/journal/EditorialJournal';
-import BespokeNewsletter from '@sections/newsletter/BespokeNewsletter';
+import HeroCampaign from '@components/home/HeroCampaign';
+import TrustStrip from '@components/home/TrustStrip';
+import ShopByCategory from '@components/home/ShopByCategory';
+import FeaturedProducts from '@components/home/FeaturedProducts';
+import CampaignBanner from '@components/home/CampaignBanner';
+import NewArrivals from '@components/home/NewArrivals';
+import BrandEditorial from '@components/home/BrandEditorial';
+import ExploreStrip from '@components/home/ExploreStrip';
 import MinimalLuxuryFooter from '@components/common/MinimalLuxuryFooter';
 
 export const metadata = {
-  title: 'KOKIO | Les Voyages de l\'Esprit • Luxury Travel & Luggage',
-  description: 'A cinematic editorial exploration of aerospace-grade aluminum luggage, bespoke Italian vachetta leather goods, and metrology craftsmanship.',
+  title: 'KOKIO | Les Voyages de l\'Esprit • Premium Luxury Travel & Luggage',
+  description: 'Experience aerospace-grade aluminum trunks, Tuscan vachetta leather goods, and metrology craftsmanship.',
 };
 
 export default function Home() {
   return (
     <SmoothScrollProvider>
-      <div className="min-h-screen bg-[#F8F6F2] text-neutral-950 flex flex-col font-sans selection:bg-amber-500/30 selection:text-neutral-950">
+      <div className="min-h-screen bg-[#F8F6F2] text-[#161616] flex flex-col font-sans selection:bg-[#B8892D]/30 selection:text-[#161616]">
         
-        {/* Integrated Luxury Header Navbar */}
+        {/* 01-03. Integrated Header (Includes AnnouncementBar, Navigation, MegaMenu, MobileMenu) */}
         <Header />
 
-        {/* 14-Step Information Architecture Narrative Flow */}
+        {/* Commerce Homepage Flow */}
         <main className="flex-1 w-full overflow-hidden">
-          {/* 1. Fullscreen Cinematic Hero with Audio Toggle */}
-          <HeroVideoSection />
+          {/* 04. Hero Campaign with Cinematic Video */}
+          <HeroCampaign />
 
-          {/* 2. Editorial Manifesto Section */}
-          <ManifestoSection />
+          {/* 05. Service / Trust Strip */}
+          <TrustStrip />
 
-          {/* 3. Horizontal Storytelling Section (The 100,000 Mile Journey) */}
-          <HorizontalStorySection />
+          {/* 06. Shop by Category */}
+          <ShopByCategory />
 
-          {/* 4. Full-Width Campaign Photography (Iceland Expedition) */}
-          <FullWidthCampaign />
+          {/* 07. Featured / Bestselling Products */}
+          <FeaturedProducts />
 
-          {/* 5. Interactive 3D Product Experience */}
-          <InteractiveProductExp />
+          {/* 08. Large Campaign Banner */}
+          <CampaignBanner />
 
-          {/* 6. Craftsmanship Timeline */}
-          <CraftsmanshipTimeline />
+          {/* 09. New Arrivals */}
+          <NewArrivals />
 
-          {/* 7. Materials & Metrology Showcase */}
-          <MaterialsShowcase />
+          {/* 10. Concise Brand Editorial */}
+          <BrandEditorial />
 
-          {/* 8. Travel Lifestyle Asymmetric Masonry Gallery */}
-          <TravelLifestyleGallery />
-
-          {/* 9. Featured Collections with Asymmetric Magazine Layouts */}
-          <AsymmetricCollections />
-
-          {/* 10. Signature Pieces */}
-          <BestSellers />
-
-          {/* 11. Curated Voyage Catalog */}
-          <BestSellersEditorial />
-
-          {/* 11. Customer Stories & Testimonials */}
-          <CustomerStories />
-
-          {/* 12. Editorial Journal */}
-          <EditorialJournal />
-
-          {/* 13. Bespoke Voyager Club Newsletter */}
-          <BespokeNewsletter />
+          {/* 11. Collection Explore Strip */}
+          <ExploreStrip />
         </main>
 
-        {/* 14. Minimal Luxury Footer */}
+        {/* 12. Minimal Luxury Footer (With Integrated Voyager Club Newsletter) */}
         <MinimalLuxuryFooter />
 
       </div>

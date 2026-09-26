@@ -104,33 +104,64 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Unique KOKIO Luxury Button System */
+/* KOKIO Unified Luxury Button System (Architectural, Controlled Geometry, Zero AI-Bloat) */
 .btn-primary-luxury {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 14px 28px;
-  background-color: #B8892D;
-  color: #161616;
-  font-size: 15px;
+  min-height: 44px;
+  padding: 12px 24px;
+  background-color: #161616;
+  color: #F8F6F2;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  border-radius: 14px;
-  border: 1px solid transparent;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 10px 25px -5px rgba(184, 137, 45, 0.3);
+  border-radius: 2px;
+  border: 1px solid #161616;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: none;
   cursor: pointer;
 }
 .btn-primary-luxury:hover {
-  background-color: #111111;
-  color: #F8F6F2;
+  background-color: #B8892D;
+  color: #111111;
   border-color: #B8892D;
-  transform: translateY(-2px);
-  box-shadow: 0 15px 35px -5px rgba(17, 17, 17, 0.4), 0 0 20px rgba(184, 137, 45, 0.2);
+  transform: translateY(-1px);
 }
 .btn-primary-luxury:active {
+  transform: translateY(0);
+}
+
+.btn-primary-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 12px 26px;
+  background-color: #B8892D;
+  color: #111111;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid #B8892D;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: none;
+  cursor: pointer;
+}
+.btn-primary-gold:hover {
+  background-color: #161616;
+  color: #F8F6F2;
+  border-color: #161616;
+  transform: translateY(-1px);
+}
+.btn-primary-gold:active {
   transform: translateY(0);
 }
 
@@ -139,65 +170,105 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 14px 28px;
-  background: rgba(248, 246, 242, 0.4);
-  backdrop-filter: blur(12px);
+  min-height: 44px;
+  padding: 12px 24px;
+  background-color: transparent;
   color: #161616;
-  font-size: 15px;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  border-radius: 14px;
-  border: 1px solid #B8892D;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
+  border: 1px solid rgba(22, 22, 22, 0.2);
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: pointer;
 }
 .btn-secondary-luxury:hover {
-  background-color: #B8892D;
-  color: #161616;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px -5px rgba(184, 137, 45, 0.35);
+  border-color: #161616;
+  background-color: rgba(22, 22, 22, 0.04);
+  transform: translateY(-1px);
+}
+.btn-secondary-luxury:active {
+  transform: translateY(0);
 }
 
-/* Unique KOKIO Cards with 18px Radius */
+.btn-secondary-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 12px 24px;
+  background-color: transparent;
+  color: #F8F6F2;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+.btn-secondary-dark:hover {
+  border-color: #B8892D;
+  color: #B8892D;
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+.btn-secondary-dark:active {
+  transform: translateY(0);
+}
+
+/* KOKIO Cards System: Controlled Geometry, Dominant Photography, Subtle Hairline Borders */
 .card-kokio-ivory {
-  background-color: #F8F6F2;
+  background-color: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 18px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .card-kokio-ivory:hover {
-  border-color: rgba(184, 137, 45, 0.35);
-  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.09);
-  transform: translateY(-4px);
+  border-color: rgba(184, 137, 45, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .card-kokio-sand {
   background-color: #EFEAE2;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 18px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
+  transition: border-color 0.3s ease;
 }
 .card-kokio-sand:hover {
   border-color: rgba(184, 137, 45, 0.4);
-  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.08);
-  transform: translateY(-4px);
 }
 
 .card-kokio-onyx {
-  background-color: #111111;
+  background-color: #141414;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 18px;
+  border-radius: 2px;
   color: #F8F6F2;
-  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.4);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.3s ease;
 }
 .card-kokio-onyx:hover {
   border-color: rgba(184, 137, 45, 0.5);
-  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.6), 0 0 25px rgba(184, 137, 45, 0.15);
-  transform: translateY(-4px);
+}
+
+/* Subtle Page Navigation Fade Animation */
+@keyframes kokioFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-kokio-fade {
+  animation: kokioFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Hide scrollbar */
@@ -207,6 +278,20 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Reduced Motion Discipline */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
 }
 
 
