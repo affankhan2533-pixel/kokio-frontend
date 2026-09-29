@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowUpRight, User, MapPin, Mail, Phone, Lock, Sparkles } from 'lucide-react';
+import { Lock } from 'lucide-react';
 import PaymentNoticeModal from '@components/checkout/PaymentNoticeModal';
+import OrderSummary from '@components/checkout/OrderSummary';
 
 const INDIAN_STATES = [
   'Maharashtra',
@@ -105,22 +106,24 @@ export default function CheckoutForm({ items, subtotal }) {
     }
   };
 
+  const inputBaseStyle =
+    'w-full min-h-[44px] px-3.5 py-2.5 bg-white border rounded-xs text-sm font-sans focus:outline-none transition-colors';
+
   return (
     <>
-      <form onSubmit={handleSubmit} noValidate className="space-y-8 text-[#161616]">
+      <form onSubmit={handleSubmit} noValidate className="space-y-10 text-[#161616]">
         
-        {/* SECTION 01 — CONTACT INFORMATION */}
-        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-black/8 shadow-xs space-y-5">
-          <div className="flex items-center gap-2 border-b border-black/8 pb-3">
-            <Mail className="w-4 h-4 text-[#B8892D]" />
-            <h2 className="font-serif text-xl font-light text-[#161616]">CONTACT INFORMATION</h2>
-          </div>
+        {/* 01 — CUSTOMER INFORMATION */}
+        <div className="space-y-5">
+          <h2 className="font-serif text-lg sm:text-xl font-light text-[#161616] border-b border-[#EAEAEA] pb-3">
+            CUSTOMER INFORMATION
+          </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Email Field */}
             <div className="space-y-1.5">
-              <label htmlFor="email" className="block text-xs font-sans tracking-[0.14em] uppercase text-xs uppercase text-[#555555] font-semibold">
-                EMAIL ADDRESS <span className="text-[#B8892D]">*</span>
+              <label htmlFor="email" className="block text-[11px] font-sans tracking-[0.1em] text-[#555555] uppercase font-medium">
+                Email Address <span className="text-[#B8892D]">*</span>
               </label>
               <input
                 type="email"
@@ -130,22 +133,24 @@ export default function CheckoutForm({ items, subtotal }) {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="name@domain.com"
-                className={`w-full min-h-[44px] px-4 py-2.5 bg-[#F8F6F2]/70 border ${
-                  errors.email ? 'border-red-500' : 'border-black/15 focus:border-[#B8892D]'
-                } rounded-xl text-sm font-sans focus:outline-none focus:ring-1 focus:ring-[#B8892D] transition-colors`}
+                className={`${inputBaseStyle} ${
+                  errors.email
+                    ? 'border-red-500 focus:border-red-500'
+                    : 'border-[#EAEAEA] focus:border-[#161616]'
+                }`}
               />
               {errors.email && (
-                <p className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs text-red-600 font-medium">{errors.email}</p>
+                <p className="text-[11px] font-sans text-red-600">{errors.email}</p>
               )}
             </div>
 
             {/* Mobile Number Field */}
             <div className="space-y-1.5">
-              <label htmlFor="phone" className="block text-xs font-sans tracking-[0.14em] uppercase text-xs uppercase text-[#555555] font-semibold">
-                MOBILE NUMBER (INDIA) <span className="text-[#B8892D]">*</span>
+              <label htmlFor="phone" className="block text-[11px] font-sans tracking-[0.1em] text-[#555555] uppercase font-medium">
+                Mobile Number <span className="text-[#B8892D]">*</span>
               </label>
               <div className="relative">
-                <span className="absolute left-3.5 top-3 text-xs font-sans tracking-[0.14em] uppercase text-xs text-[#777777] font-semibold">
+                <span className="absolute left-3 top-3 text-xs font-sans text-[#777777] font-medium">
                   +91
                 </span>
                 <input
@@ -156,30 +161,31 @@ export default function CheckoutForm({ items, subtotal }) {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="98765 43210"
-                  className={`w-full min-h-[44px] pl-12 pr-4 py-2.5 bg-[#F8F6F2]/70 border ${
-                    errors.phone ? 'border-red-500' : 'border-black/15 focus:border-[#B8892D]'
-                  } rounded-xl text-sm font-sans focus:outline-none focus:ring-1 focus:ring-[#B8892D] transition-colors`}
+                  className={`w-full min-h-[44px] pl-11 pr-3.5 py-2.5 bg-white border rounded-xs text-sm font-sans focus:outline-none transition-colors ${
+                    errors.phone
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-[#EAEAEA] focus:border-[#161616]'
+                  }`}
                 />
               </div>
               {errors.phone && (
-                <p className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs text-red-600 font-medium">{errors.phone}</p>
+                <p className="text-[11px] font-sans text-red-600">{errors.phone}</p>
               )}
             </div>
           </div>
         </div>
 
-        {/* SECTION 02 — SHIPPING ADDRESS */}
-        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-black/8 shadow-xs space-y-5">
-          <div className="flex items-center gap-2 border-b border-black/8 pb-3">
-            <MapPin className="w-4 h-4 text-[#B8892D]" />
-            <h2 className="font-serif text-xl font-light text-[#161616]">DELIVERY ADDRESS</h2>
-          </div>
+        {/* 02 — SHIPPING ADDRESS */}
+        <div className="space-y-5">
+          <h2 className="font-serif text-lg sm:text-xl font-light text-[#161616] border-b border-[#EAEAEA] pb-3">
+            SHIPPING ADDRESS
+          </h2>
 
           <div className="space-y-4">
             {/* Full Name */}
             <div className="space-y-1.5">
-              <label htmlFor="name" className="block text-xs font-sans tracking-[0.14em] uppercase text-xs uppercase text-[#555555] font-semibold">
-                FULL NAME <span className="text-[#B8892D]">*</span>
+              <label htmlFor="name" className="block text-[11px] font-sans tracking-[0.1em] text-[#555555] uppercase font-medium">
+                Full Name <span className="text-[#B8892D]">*</span>
               </label>
               <input
                 type="text"
@@ -188,20 +194,22 @@ export default function CheckoutForm({ items, subtotal }) {
                 autoComplete="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="First and Last Name"
-                className={`w-full min-h-[44px] px-4 py-2.5 bg-[#F8F6F2]/70 border ${
-                  errors.name ? 'border-red-500' : 'border-black/15 focus:border-[#B8892D]'
-                } rounded-xl text-sm font-sans focus:outline-none focus:ring-1 focus:ring-[#B8892D] transition-colors`}
+                placeholder="Full Name"
+                className={`${inputBaseStyle} ${
+                  errors.name
+                    ? 'border-red-500 focus:border-red-500'
+                    : 'border-[#EAEAEA] focus:border-[#161616]'
+                }`}
               />
               {errors.name && (
-                <p className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs text-red-600 font-medium">{errors.name}</p>
+                <p className="text-[11px] font-sans text-red-600">{errors.name}</p>
               )}
             </div>
 
             {/* Address Line 1 */}
             <div className="space-y-1.5">
-              <label htmlFor="address1" className="block text-xs font-sans tracking-[0.14em] uppercase text-xs uppercase text-[#555555] font-semibold">
-                STREET ADDRESS / HOUSE NO / BUILDING <span className="text-[#B8892D]">*</span>
+              <label htmlFor="address1" className="block text-[11px] font-sans tracking-[0.1em] text-[#555555] uppercase font-medium">
+                Street Address <span className="text-[#B8892D]">*</span>
               </label>
               <input
                 type="text"
@@ -210,20 +218,22 @@ export default function CheckoutForm({ items, subtotal }) {
                 autoComplete="street-address"
                 value={formData.address1}
                 onChange={handleChange}
-                placeholder="Flat / Suite / Building Name / Street"
-                className={`w-full min-h-[44px] px-4 py-2.5 bg-[#F8F6F2]/70 border ${
-                  errors.address1 ? 'border-red-500' : 'border-black/15 focus:border-[#B8892D]'
-                } rounded-xl text-sm font-sans focus:outline-none focus:ring-1 focus:ring-[#B8892D] transition-colors`}
+                placeholder="House / Flat / Street Name"
+                className={`${inputBaseStyle} ${
+                  errors.address1
+                    ? 'border-red-500 focus:border-red-500'
+                    : 'border-[#EAEAEA] focus:border-[#161616]'
+                }`}
               />
               {errors.address1 && (
-                <p className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs text-red-600 font-medium">{errors.address1}</p>
+                <p className="text-[11px] font-sans text-red-600">{errors.address1}</p>
               )}
             </div>
 
             {/* Address Line 2 (Optional) */}
             <div className="space-y-1.5">
-              <label htmlFor="address2" className="block text-xs font-sans tracking-[0.14em] uppercase text-xs uppercase text-[#555555] font-semibold">
-                APARTMENT, SUITE, LANDMARK (OPTIONAL)
+              <label htmlFor="address2" className="block text-[11px] font-sans tracking-[0.1em] text-[#555555] uppercase font-medium">
+                Apartment, Suite, Landmark (Optional)
               </label>
               <input
                 type="text"
@@ -232,8 +242,8 @@ export default function CheckoutForm({ items, subtotal }) {
                 autoComplete="address-line2"
                 value={formData.address2}
                 onChange={handleChange}
-                placeholder="Landmark or Area info"
-                className="w-full min-h-[44px] px-4 py-2.5 bg-[#F8F6F2]/70 border border-black/15 focus:border-[#B8892D] rounded-xl text-sm font-sans focus:outline-none focus:ring-1 focus:ring-[#B8892D] transition-colors"
+                placeholder="Apartment, suite, unit, etc."
+                className={`${inputBaseStyle} border-[#EAEAEA] focus:border-[#161616]`}
               />
             </div>
 
@@ -241,8 +251,8 @@ export default function CheckoutForm({ items, subtotal }) {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {/* City */}
               <div className="space-y-1.5">
-                <label htmlFor="city" className="block text-xs font-sans tracking-[0.14em] uppercase text-xs uppercase text-[#555555] font-semibold">
-                  CITY / DISTRICT <span className="text-[#B8892D]">*</span>
+                <label htmlFor="city" className="block text-[11px] font-sans tracking-[0.1em] text-[#555555] uppercase font-medium">
+                  City <span className="text-[#B8892D]">*</span>
                 </label>
                 <input
                   type="text"
@@ -251,20 +261,22 @@ export default function CheckoutForm({ items, subtotal }) {
                   autoComplete="address-level2"
                   value={formData.city}
                   onChange={handleChange}
-                  placeholder="Mumbai / Delhi / Bengaluru"
-                  className={`w-full min-h-[44px] px-4 py-2.5 bg-[#F8F6F2]/70 border ${
-                    errors.city ? 'border-red-500' : 'border-black/15 focus:border-[#B8892D]'
-                  } rounded-xl text-sm font-sans focus:outline-none focus:ring-1 focus:ring-[#B8892D] transition-colors`}
+                  placeholder="City"
+                  className={`${inputBaseStyle} ${
+                    errors.city
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-[#EAEAEA] focus:border-[#161616]'
+                  }`}
                 />
                 {errors.city && (
-                  <p className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs text-red-600 font-medium">{errors.city}</p>
+                  <p className="text-[11px] font-sans text-red-600">{errors.city}</p>
                 )}
               </div>
 
               {/* State */}
               <div className="space-y-1.5">
-                <label htmlFor="state" className="block text-xs font-sans tracking-[0.14em] uppercase text-xs uppercase text-[#555555] font-semibold">
-                  STATE <span className="text-[#B8892D]">*</span>
+                <label htmlFor="state" className="block text-[11px] font-sans tracking-[0.1em] text-[#555555] uppercase font-medium">
+                  State <span className="text-[#B8892D]">*</span>
                 </label>
                 <select
                   id="state"
@@ -272,9 +284,11 @@ export default function CheckoutForm({ items, subtotal }) {
                   autoComplete="address-level1"
                   value={formData.state}
                   onChange={handleChange}
-                  className={`w-full min-h-[44px] px-3 py-2.5 bg-[#F8F6F2]/70 border ${
-                    errors.state ? 'border-red-500' : 'border-black/15 focus:border-[#B8892D]'
-                  } rounded-xl text-sm font-sans focus:outline-none focus:ring-1 focus:ring-[#B8892D] transition-colors`}
+                  className={`w-full min-h-[44px] px-3 py-2.5 bg-white border rounded-xs text-sm font-sans focus:outline-none transition-colors ${
+                    errors.state
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-[#EAEAEA] focus:border-[#161616]'
+                  }`}
                 >
                   {INDIAN_STATES.map((st) => (
                     <option key={st} value={st}>
@@ -283,14 +297,14 @@ export default function CheckoutForm({ items, subtotal }) {
                   ))}
                 </select>
                 {errors.state && (
-                  <p className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs text-red-600 font-medium">{errors.state}</p>
+                  <p className="text-[11px] font-sans text-red-600">{errors.state}</p>
                 )}
               </div>
 
               {/* PIN Code */}
               <div className="space-y-1.5">
-                <label htmlFor="pinCode" className="block text-xs font-sans tracking-[0.14em] uppercase text-xs uppercase text-[#555555] font-semibold">
-                  PIN CODE <span className="text-[#B8892D]">*</span>
+                <label htmlFor="pinCode" className="block text-[11px] font-sans tracking-[0.1em] text-[#555555] uppercase font-medium">
+                  PIN Code <span className="text-[#B8892D]">*</span>
                 </label>
                 <input
                   type="text"
@@ -301,20 +315,22 @@ export default function CheckoutForm({ items, subtotal }) {
                   value={formData.pinCode}
                   onChange={handleChange}
                   placeholder="400001"
-                  className={`w-full min-h-[44px] px-4 py-2.5 bg-[#F8F6F2]/70 border ${
-                    errors.pinCode ? 'border-red-500' : 'border-black/15 focus:border-[#B8892D]'
-                  } rounded-xl text-sm font-sans focus:outline-none focus:ring-1 focus:ring-[#B8892D] transition-colors font-sans tracking-[0.14em] uppercase text-xs`}
+                  className={`${inputBaseStyle} ${
+                    errors.pinCode
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-[#EAEAEA] focus:border-[#161616]'
+                  }`}
                 />
                 {errors.pinCode && (
-                  <p className="text-[11px] font-sans tracking-[0.14em] uppercase text-xs text-red-600 font-medium">{errors.pinCode}</p>
+                  <p className="text-[11px] font-sans text-red-600">{errors.pinCode}</p>
                 )}
               </div>
             </div>
 
             {/* Country */}
             <div className="space-y-1.5 pt-1">
-              <label htmlFor="country" className="block text-xs font-sans tracking-[0.14em] uppercase text-xs uppercase text-[#555555] font-semibold">
-                COUNTRY / REGION
+              <label htmlFor="country" className="block text-[11px] font-sans tracking-[0.1em] text-[#555555] uppercase font-medium">
+                Country / Region
               </label>
               <input
                 type="text"
@@ -322,24 +338,30 @@ export default function CheckoutForm({ items, subtotal }) {
                 name="country"
                 value="India"
                 disabled
-                className="w-full min-h-[44px] px-4 py-2.5 bg-black/5 border border-black/10 rounded-xl text-sm font-sans text-[#777777] cursor-not-allowed font-medium"
+                className="w-full min-h-[44px] px-3.5 py-2.5 bg-[#F9F9F9] border border-[#EAEAEA] rounded-xs text-sm font-sans text-[#777777] cursor-not-allowed"
               />
             </div>
           </div>
         </div>
 
-        {/* Submit Primary CTA */}
-        <div className="pt-2">
+        {/* 03 — MOBILE ORDER SUMMARY (Injected between Shipping & CTA for Mobile Checkout Order: Customer -> Shipping -> Order Summary -> Continue to Payment) */}
+        <div className="lg:hidden">
+          <OrderSummary isMobile />
+        </div>
+
+        {/* 04 — CONTINUE TO PAYMENT CTA */}
+        <div className="pt-2 space-y-3">
           <button
             type="submit"
-            className="btn-primary-gold w-full min-h-[50px] text-xs font-sans tracking-[0.16em]"
+            className="w-full min-h-[48px] px-6 py-3.5 bg-[#161616] hover:bg-[#B8892D] text-[#F8F6F2] hover:text-[#111111] rounded-xs text-xs font-sans font-medium tracking-[0.14em] uppercase transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer group"
           >
             <span>CONTINUE TO PAYMENT</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <span className="inline-block transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
           </button>
-          <div className="flex items-center justify-center gap-2 text-[11px] font-sans text-[#777777] uppercase mt-3">
-            <Lock className="w-3.5 h-3.5 text-[#2E7D32]" />
-            <span>SECURE CHECKOUT • VERIFIED ENCRYPTION</span>
+          
+          <div className="flex items-center justify-center gap-1.5 text-[11px] font-sans text-[#777777] uppercase">
+            <Lock className="w-3.5 h-3.5 stroke-[1.5] text-[#161616]" />
+            <span className="font-medium tracking-wide">SECURE CHECKOUT</span>
           </div>
         </div>
 
@@ -349,9 +371,6 @@ export default function CheckoutForm({ items, subtotal }) {
       <PaymentNoticeModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        formData={formData}
-        items={items}
-        subtotal={subtotal}
       />
     </>
   );

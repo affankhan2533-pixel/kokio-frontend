@@ -63,11 +63,11 @@ export default function MinimalLuxuryFooter() {
   };
 
   return (
-    <footer className="bg-[#0D0D0D] text-[#F8F6F2] border-t border-white/10 pt-16 pb-10">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-14">
+    <footer className="bg-[#0D0D0D] text-[#F8F6F2] border-t border-white/10 pt-12 sm:pt-16 pb-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-12 sm:space-y-14">
         
         {/* TOP TIER: Logotype & Integrated Voyager Club Newsletter */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start border-b border-white/10 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start border-b border-white/10 pb-10 sm:pb-12">
           
           {/* Brand Identity */}
           <div className="lg:col-span-5 space-y-3">
@@ -86,7 +86,7 @@ export default function MinimalLuxuryFooter() {
           </div>
 
           {/* Integrated Voyager Club Newsletter Form */}
-          <div className="lg:col-span-7 bg-[#141414] rounded-xs p-6 border border-white/10 space-y-3">
+          <div className="lg:col-span-7 bg-[#141414] rounded-xs p-4 sm:p-6 border border-white/10 space-y-3">
             <div className="space-y-1">
               <span className="text-xs font-sans tracking-[0.3em] text-[#B8892D] uppercase font-bold block">
                 THE VOYAGER CLUB

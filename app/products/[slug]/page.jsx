@@ -43,74 +43,86 @@ export default async function ProductDetailPage({ params }) {
     notFound();
   }
 
+  const collectionSlug = product.collection || product.category;
+  const collectionName = product.collectionLabel || product.categoryLabel;
+
   return (
-    <div className="min-h-screen bg-[#F8F6F2] text-[#161616] flex flex-col font-sans selection:bg-[#B8892D]/30 selection:text-[#161616]">
-      {/* Integrated Header */}
+    <div className="min-h-screen bg-white text-[#161616] flex flex-col font-sans selection:bg-[#B8892D]/30 selection:text-[#161616]">
+      {/* Header */}
       <Header />
 
-      <main className="flex-1 w-full pt-28 pb-28 sm:pb-20 md:pb-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-8">
+      <main className="flex-1 w-full pt-24 sm:pt-28 pb-16 sm:pb-24">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 space-y-6 sm:space-y-8 animate-fade-in">
           
-          {/* Breadcrumbs */}
-          <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs font-sans tracking-widest text-[#777777] uppercase">
-            <Link href="/" className="hover:text-[#B8892D] transition-colors">HOME</Link>
+          {/* Breadcrumb Navigation (Restrained, Muted, Clean) */}
+          <nav aria-label="Breadcrumb" className="flex items-center space-x-1.5 text-[11px] font-sans text-[#777777]">
+            <Link href="/" className="hover:text-[#161616] transition-colors">HOME</Link>
             <span>/</span>
-            <Link href={`/collections/${product.category}`} className="hover:text-[#B8892D] transition-colors">{product.categoryLabel}</Link>
+            <Link href="/collections/all" className="hover:text-[#161616] transition-colors">COLLECTIONS</Link>
             <span>/</span>
-            <span className="text-[#161616] font-semibold truncate max-w-[200px]">{product.name}</span>
+            <Link href={`/collections/${collectionSlug}`} className="hover:text-[#161616] transition-colors uppercase">
+              {collectionName}
+            </Link>
+            <span>/</span>
+            <span className="text-[#161616] font-medium truncate max-w-[240px]">{product.name}</span>
           </nav>
 
-          {/* 2-Column Desktop / Responsive Mobile PDP Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          {/* Main PDP Layout: ~60% Left Visual Gallery / ~40% Right Product Information */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             
-            {/* Left Column: Image Gallery */}
+            {/* Left Column: Product Gallery (~60%) */}
             <div className="lg:col-span-7">
               <ProductGallery product={product} />
             </div>
 
-            {/* Right Column: Commerce Purchase Panel */}
-            <div className="lg:col-span-5 space-y-6">
+            {/* Right Column: Product Information (~40%, sits directly on white page) */}
+            <div className="lg:col-span-5 space-y-5">
               
               {/* Product Info Header */}
-              <div className="space-y-2 border-b border-black/8 pb-6">
-                <span className="text-xs font-sans tracking-[0.3em] font-semibold text-[#B8892D] uppercase block">
-                  {product.tag || product.categoryLabel}
+              <div className="space-y-2">
+                {/* 1. COLLECTION */}
+                <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-[#777777] font-medium block">
+                  {collectionName}
                 </span>
-                <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-[#161616] leading-tight">
+
+                {/* 2. Product Name (Cormorant Garamond 42–50px max desktop, 30–36px mobile) */}
+                <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] font-light text-[#161616] leading-tight tracking-tight">
                   {product.name}
                 </h1>
-                <p className="text-xs sm:text-sm text-[#555555] font-light leading-relaxed">
-                  {product.specs}
+
+                {/* 3. One-line verified descriptor */}
+                <p className="text-xs text-[#555555] font-light leading-relaxed pt-0.5">
+                  {product.story || product.specs}
                 </p>
-                <div className="pt-2 flex items-center justify-between">
-                  <span className="font-sans text-2xl sm:text-3xl font-semibold text-[#161616]">
-                    {product.price}
-                  </span>
-                  <span className="text-[10px] font-sans text-[#B8892D] tracking-widest uppercase font-bold px-2.5 py-1 bg-[#B8892D]/10 rounded-md border border-[#B8892D]/30">
-                    IN STOCK • READY FOR TRANSIT
-                  </span>
+
+                {/* 4. Price (Plus Jakarta Sans, clear but understated) */}
+                <div className="pt-1 font-sans text-xl sm:text-2xl font-medium text-[#161616]">
+                  {product.price}
                 </div>
               </div>
 
-              {/* Interactive Variant Selection, Quantity & Add To Bag */}
+              {/* Thin Hairline Divider */}
+              <div className="border-b border-[#EAEAEA] pt-1" />
+
+              {/* 5-8. Variant Selection, Quantity, ADD TO BAG & Wishlist */}
               <ProductClientActions product={product} />
 
-              {/* Bespoke Monogramming Preview (if supported) */}
-              <MonogramPreview product={product} />
-
-              {/* Editorial Accordion Information Stack */}
+              {/* 9. Product Details Accordion */}
               <ProductAccordion product={product} />
 
-              {/* Product Intelligence — The Piece at a Glance */}
+              {/* 10. Product Intelligence — The Piece at a Glance */}
               <ProductIntelligence product={product} />
+
+              {/* 11. Monogramming Preview (if supported) */}
+              <MonogramPreview product={product} />
             </div>
 
           </div>
 
         </div>
 
-        {/* You May Also Explore Cross-Sells */}
-        <div className="mt-16">
+        {/* You May Also Explore Cross-Sells (Exact PLP Product Cards on White Canvas) */}
+        <div className="mt-8 sm:mt-12">
           <RelatedProducts currentProductId={product.id} products={PRODUCTS_CATALOG} />
         </div>
       </main>

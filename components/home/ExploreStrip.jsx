@@ -41,17 +41,17 @@ export default function ExploreStrip() {
   return (
     <section
       id="collections"
-      className="py-14 md:py-20 bg-[#F8F6F2] text-[#161616] border-b border-black/8"
+      className="py-10 sm:py-14 md:py-20 bg-[#F8F6F2] text-[#161616] border-b border-black/8"
       aria-label="Explore Collections"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-6 md:space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-6 md:space-y-8">
         
         {/* Section Header with Scroll Reveal */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
           className="flex items-center justify-between border-b border-black/8 pb-4"
         >
           <div>
@@ -76,19 +76,19 @@ export default function ExploreStrip() {
           {COLLECTIONS.map((col, idx) => (
             <motion.div
               key={col.number}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{
-                duration: 0.5,
-                delay: idx * 0.08,
+                duration: 0.38,
+                delay: Math.min(idx * 0.05, 0.15),
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="min-w-[70vw] sm:min-w-[45vw] md:min-w-0 snap-center shrink-0"
             >
               <Link
                 href={col.href}
-                className="group relative h-60 sm:h-64 rounded-xl overflow-hidden bg-[#EFEAE2] border border-black/8 shadow-xs hover:border-[#B8892D]/40 transition-all duration-300 flex flex-col justify-between p-5 block"
+                className="group relative h-60 sm:h-64 rounded-xs overflow-hidden bg-[#EFEAE2] border border-black/8 shadow-none hover:border-[#B8892D]/40 transition-colors duration-250 flex flex-col justify-between p-5 block"
               >
                 {/* Background Photography */}
                 <Image
@@ -96,7 +96,7 @@ export default function ExploreStrip() {
                   alt={col.name}
                   fill
                   sizes="(max-width: 768px) 70vw, 25vw"
-                  className="object-cover object-center group-hover:scale-[1.025] transition-transform duration-300 ease-out"
+                  className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
                   loading="lazy"
                 />
 
@@ -109,16 +109,16 @@ export default function ExploreStrip() {
                     {col.number} • EDITION
                   </span>
                   <div className="w-7 h-7 rounded-full bg-white/90 text-[#161616] group-hover:bg-[#B8892D] group-hover:text-white flex items-center justify-center transition-colors">
-                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-[3px]" />
                   </div>
                 </div>
 
                 {/* Bottom Content */}
-                <div className="relative z-10 space-y-0.5 text-white group-hover:-translate-y-0.5 transition-transform duration-300">
+                <div className="relative z-10 space-y-0.5 text-white">
                   <h3 className="font-serif text-lg font-medium group-hover:text-[#D4AF37] transition-colors">
                     {col.name}
                   </h3>
-                  <p className="text-xs text-white/75 font-light truncate">
+                  <p className="text-xs text-white/90 font-normal truncate">
                     {col.desc}
                   </p>
                 </div>

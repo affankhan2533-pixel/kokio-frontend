@@ -5,6 +5,8 @@ import { X, ArrowUpRight, Scale } from 'lucide-react';
 import { useCompareStore } from '@store/useCompareStore';
 import { PRODUCTS_CATALOG } from '@lib/catalogData';
 
+import { motion, AnimatePresence } from 'framer-motion';
+
 export default function CompareBar() {
   const { compareList, removeCompare, clearCompare, openCompare } = useCompareStore();
 
@@ -15,7 +17,14 @@ export default function CompareBar() {
     .filter(Boolean);
 
   return (
-    <aside aria-label="Product Comparison Bar" className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-3xl bg-[#161616]/95 backdrop-blur-md text-[#F8F6F2] rounded-xs p-3 sm:p-4 border border-white/15 shadow-xl animate-fade-in">
+    <motion.aside
+      aria-label="Product Comparison Bar"
+      initial={{ opacity: 0, y: 10, x: '-50%' }}
+      animate={{ opacity: 1, y: 0, x: '-50%' }}
+      exit={{ opacity: 0, y: 10, x: '-50%' }}
+      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed bottom-4 sm:bottom-6 left-1/2 z-40 w-[95%] max-w-3xl bg-[#161616]/95 backdrop-blur-md text-[#F8F6F2] rounded-xs p-3 sm:p-4 border border-white/15 shadow-xl"
+    >
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
         
         {/* Left: Indicator & Thumbnails */}
@@ -28,8 +37,12 @@ export default function CompareBar() {
 
           <div className="flex items-center gap-2 shrink-0">
             {selectedProducts.map((prod) => (
-              <div
+              <motion.div
                 key={prod.id}
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.94 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 className="relative group w-11 h-12 rounded-xs bg-[#222] border border-white/10 overflow-hidden shrink-0"
               >
                 <Image
@@ -47,7 +60,7 @@ export default function CompareBar() {
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
-              </div>
+              </motion.div>
             ))}
 
             {/* Empty slots placeholders */}
@@ -83,6 +96,6 @@ export default function CompareBar() {
         </div>
 
       </div>
-    </aside>
+    </motion.aside>
   );
 }

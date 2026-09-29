@@ -9,10 +9,21 @@ export const FILTER_SECTIONS = [
     id: 'category',
     label: 'Category',
     options: [
-      { id: 'carry-on', label: 'Carry-On Luggage' },
-      { id: 'trunks', label: 'Extended Trunks' },
+      { id: 'luggage', label: 'Luggage' },
       { id: 'bags', label: 'Bags & Duffels' },
       { id: 'accessories', label: 'Travel Accessories' },
+    ],
+  },
+  {
+    id: 'productType',
+    label: 'Product Type',
+    options: [
+      { id: 'carry-on', label: 'Carry-On Luggage' },
+      { id: 'trunks', label: 'Extended Trunks' },
+      { id: 'backpack', label: 'Backpacks' },
+      { id: 'briefcase', label: 'Briefcases & Satchels' },
+      { id: 'duffel', label: 'Duffels & Weekenders' },
+      { id: 'accessory', label: 'Small Accessories' },
     ],
   },
   {
@@ -39,8 +50,8 @@ export const FILTER_SECTIONS = [
     id: 'colour',
     label: 'Colour',
     options: [
-      { id: 'Silver Aluminum', label: 'Silver Aluminum' },
-      { id: 'Onyx Black', label: 'Onyx Black' },
+      { id: 'Silver Aluminum', label: 'Silver' },
+      { id: 'Onyx Black', label: 'Black' },
       { id: 'Champagne Gold', label: 'Champagne Gold' },
       { id: 'Titanium Grey', label: 'Titanium Grey' },
       { id: 'Chestnut Brown', label: 'Chestnut Brown' },
@@ -65,11 +76,12 @@ export default function FilterBar({
   onReset,
   hasActiveFilters,
 }) {
-  // Keep all accordion sections expanded by default for easy scanning, collapsible on click
+  // Accordion open/collapse state (top sections open by default)
   const [openSections, setOpenSections] = useState({
     category: true,
+    productType: true,
     material: true,
-    collection: true,
+    collection: false,
     colour: false,
     price: false,
   });
@@ -82,10 +94,10 @@ export default function FilterBar({
   };
 
   return (
-    <aside className="w-48 lg:w-56 shrink-0 text-[#161616] font-sans select-none space-y-1">
+    <aside className="w-[195px] shrink-0 text-[#161616] font-sans select-none space-y-0.5">
       {/* Active Filters Reset Trigger */}
       {hasActiveFilters && (
-        <div className="pb-3 border-b border-black/8 flex items-center justify-between">
+        <div className="pb-3 border-b border-[#EAEAEA] flex items-center justify-between">
           <span className="text-[11px] font-medium text-[#777777] uppercase tracking-wider">
             Active Filters
           </span>
@@ -106,16 +118,16 @@ export default function FilterBar({
         const selectedValues = filters[section.id] || [];
 
         return (
-          <div key={section.id} className="border-b border-black/8 py-3.5">
+          <div key={section.id} className="border-b border-[#EAEAEA] py-3">
             {/* Accordion Header Button */}
             <button
               type="button"
               onClick={() => toggleSection(section.id)}
-              className="w-full flex items-center justify-between text-left cursor-pointer group py-0.5"
+              className="w-full flex items-center justify-between text-left cursor-pointer group py-1"
               aria-expanded={isOpen}
             >
               <div className="flex items-center gap-2">
-                <span className="text-xs uppercase tracking-wider font-medium text-[#161616] group-hover:text-[#B8892D] transition-colors">
+                <span className="text-[11px] uppercase tracking-[0.12em] font-medium text-[#161616] group-hover:text-[#B8892D] transition-colors">
                   {section.label}
                 </span>
                 {selectedValues.length > 0 && (
@@ -136,10 +148,10 @@ export default function FilterBar({
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.18, ease: 'easeOut' }}
+                  transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <div className="pt-3 pb-1 space-y-2.5">
+                  <div className="pt-2.5 pb-1 space-y-2">
                     {section.options.map((opt) => {
                       const isChecked = selectedValues.includes(opt.id);
 
@@ -149,15 +161,15 @@ export default function FilterBar({
                           className="flex items-center gap-2.5 cursor-pointer text-xs text-[#555555] hover:text-[#161616] transition-colors py-0.5 group"
                         >
                           <div
-                            className={`w-3.5 h-3.5 rounded-xs border flex items-center justify-center transition-colors shrink-0 ${
+                            className={`w-3.5 h-3.5 rounded-[1px] border flex items-center justify-center transition-colors shrink-0 ${
                               isChecked
-                                ? 'bg-[#161616] border-[#161616] text-[#F8F6F2]'
+                                ? 'border-[#B8892D] bg-[#B8892D] text-white'
                                 : 'bg-white border-black/25 group-hover:border-black/50'
                             }`}
                           >
-                            {isChecked && <Check className="w-2.5 h-2.5 stroke-[2.5]" />}
+                            {isChecked && <Check className="w-2.5 h-2.5 stroke-[3]" />}
                           </div>
-                          <span className={`text-[12px] ${isChecked ? 'font-medium text-[#161616]' : ''}`}>
+                          <span className={`text-[12px] ${isChecked ? 'font-medium text-[#161616]' : 'text-[#555555]'}`}>
                             {opt.label}
                           </span>
                           <input

@@ -30,22 +30,20 @@ export default function ProductGrid({ products, showFilters, onReset }) {
   }
 
   return (
-    <div
-      className={`grid gap-x-6 sm:gap-x-8 lg:gap-x-10 gap-y-10 sm:gap-y-14 ${
-        showFilters
-          ? 'grid-cols-2 sm:grid-cols-2 lg:grid-cols-3'
-          : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
-      }`}
-    >
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 sm:gap-x-8 lg:gap-x-12 gap-y-12 sm:gap-y-16">
       <AnimatePresence mode="popLayout">
-        {products.map((product) => (
+        {products.map((product, idx) => (
           <motion.div
             key={product.id}
             layout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
+            transition={{
+              duration: 0.32,
+              delay: Math.min(idx * 0.03, 0.15),
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="flex flex-col"
           >
             <ProductCard product={product} />

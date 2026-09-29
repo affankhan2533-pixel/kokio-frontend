@@ -15,6 +15,7 @@ export default function ProductListingPage({ meta, initialProducts }) {
   // Multi-facet filter state
   const [filters, setFilters] = useState({
     category: [],
+    productType: [],
     material: [],
     collection: [],
     colour: [],
@@ -41,6 +42,7 @@ export default function ProductListingPage({ meta, initialProducts }) {
   const handleReset = () => {
     setFilters({
       category: [],
+      productType: [],
       material: [],
       collection: [],
       colour: [],
@@ -56,31 +58,46 @@ export default function ProductListingPage({ meta, initialProducts }) {
     // 1. Category Filter
     if (filters.category.length > 0) {
       result = result.filter((p) => {
-        if (filters.category.includes(p.category)) return true;
-        if (filters.category.includes('carry-on') && (p.category === 'carry-on' || p.category === 'cabin')) return true;
-        if (filters.category.includes('trunks') && (p.category === 'trunks' || p.category === 'luggage')) return true;
+        if (filters.category.includes('luggage') && (p.category === 'carry-on' || p.category === 'cabin' || p.category === 'trunks' || p.category === 'luggage')) return true;
+        if (filters.category.includes('bags') && (p.category === 'bags' || p.category === 'duffels')) return true;
+        if (filters.category.includes('accessories') && p.category === 'accessories') return true;
         return false;
       });
     }
 
-    // 2. Material Filter
+    // 2. Product Type Filter
+    if (filters.productType && filters.productType.length > 0) {
+      result = result.filter((p) => {
+        return filters.productType.some((type) => {
+          if (type === 'carry-on') return p.category === 'carry-on' || p.category === 'cabin' || p.id.includes('carryon');
+          if (type === 'trunks') return p.category === 'trunks' || p.id.includes('trunk') || p.id.includes('checkin');
+          if (type === 'backpack') return p.id.includes('pack') || p.id.includes('backpack');
+          if (type === 'briefcase') return p.id.includes('briefcase') || p.id.includes('satchel') || p.id.includes('college-bag');
+          if (type === 'duffel') return p.id.includes('weekender') || p.id.includes('duffel');
+          if (type === 'accessory') return p.category === 'accessories' || p.id.includes('sling') || p.id.includes('folio');
+          return false;
+        });
+      });
+    }
+
+    // 3. Material Filter
     if (filters.material.length > 0) {
       result = result.filter((p) => filters.material.includes(p.materialType));
     }
 
-    // 3. Collection Filter
+    // 4. Collection Filter
     if (filters.collection.length > 0) {
       result = result.filter((p) => filters.collection.includes(p.collection));
     }
 
-    // 4. Colour Filter
+    // 5. Colour Filter
     if (filters.colour.length > 0) {
       result = result.filter((p) =>
         p.colors && p.colors.some((c) => filters.colour.includes(c))
       );
     }
 
-    // 5. Price Range Filter
+    // 6. Price Range Filter
     if (filters.price.length > 0) {
       result = result.filter((p) => {
         return filters.price.some((rangeKey) => {
@@ -93,7 +110,7 @@ export default function ProductListingPage({ meta, initialProducts }) {
       });
     }
 
-    // 6. Sorting
+    // 7. Sorting
     if (sortOption === 'price-asc') {
       result.sort((a, b) => a.rawPrice - b.rawPrice);
     } else if (sortOption === 'price-desc') {
@@ -118,19 +135,19 @@ export default function ProductListingPage({ meta, initialProducts }) {
         onOpenMobileFilters={() => setMobileDrawerOpen(true)}
       />
 
-      {/* 02. Main Browsing Canvas (Sidebar + 3-Column / 4-Column Grid) */}
+      {/* 02. Main Browsing Canvas (Sidebar + 3-Column Grid) */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-8 sm:py-12">
         <div className="flex gap-8 lg:gap-12 items-start">
           
-          {/* Desktop Filter Sidebar (Collapsible) */}
+          {/* Desktop Filter Sidebar (Collapsible 180ms animation) */}
           <AnimatePresence initial={false}>
             {showFilters && (
               <motion.div
                 initial={{ width: 0, opacity: 0 }}
                 animate={{ width: 'auto', opacity: 1 }}
                 exit={{ width: 0, opacity: 0 }}
-                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden lg:block overflow-hidden sticky top-28"
+                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                className="hidden lg:block overflow-hidden sticky top-28 shrink-0"
               >
                 <FilterBar
                   filters={filters}

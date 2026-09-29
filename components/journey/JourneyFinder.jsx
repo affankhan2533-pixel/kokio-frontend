@@ -6,6 +6,8 @@ import { useJourneyStore } from '@store/useJourneyStore';
 import JourneyStep from '@components/journey/JourneyStep';
 import JourneyResults from '@components/journey/JourneyResults';
 
+import { AnimatePresence } from 'framer-motion';
+
 export default function JourneyFinder() {
   const {
     isOpen,
@@ -42,29 +44,29 @@ export default function JourneyFinder() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-xs animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-xs animate-fade-in">
       <div
-        className="bg-[#F8F6F2] text-[#161616] w-full max-w-4xl rounded-sm border border-black/10 shadow-2xl overflow-hidden flex flex-col max-h-[92vh] selection:bg-[#B8892D]/30"
+        className="bg-white text-[#161616] w-full max-w-4xl rounded-xs border border-[#EAEAEA] shadow-2xl overflow-hidden flex flex-col max-h-[92vh] selection:bg-[#B8892D]/20"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header */}
-        <div className="px-6 py-5 border-b border-black/10 flex items-center justify-between bg-[#F8F6F2] shrink-0">
+        <div className="px-4 sm:px-6 py-4 border-b border-[#EAEAEA] flex items-center justify-between bg-white shrink-0">
           <div className="flex items-center gap-2">
-            <Compass className="w-5 h-5 text-[#B8892D]" />
-            <span className="font-serif text-lg tracking-[0.16em] font-light text-[#161616]">
+            <Compass className="w-4 h-4 sm:w-5 sm:h-5 text-[#B8892D]" />
+            <span className="font-serif text-base sm:text-lg tracking-[0.16em] font-light text-[#161616]">
               KOKIO JOURNEY FINDER
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {step <= 4 && (
-              <span className="text-xs font-sans font-medium text-[#777777] hidden sm:inline">
-                0{step} / 04
+              <span className="text-xs font-sans font-medium text-[#777777]">
+                0{step} — 04
               </span>
             )}
             <button
               onClick={closeJourney}
-              className="p-2 -mr-2 text-[#777777] hover:text-[#161616] transition-colors rounded-full cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="p-1.5 -mr-1 text-[#777777] hover:text-[#161616] transition-colors rounded-full cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Close Journey Finder"
             >
               <X className="w-5 h-5 stroke-[1.5]" />
@@ -76,7 +78,7 @@ export default function JourneyFinder() {
         {step <= 4 && (
           <div className="w-full bg-black/5 h-1">
             <div
-              className="bg-[#B8892D] h-full transition-all duration-300 ease-out"
+              className="bg-[#B8892D] h-full transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
               style={{ width: `${(step / 4) * 100}%` }}
             />
           </div>
@@ -84,24 +86,28 @@ export default function JourneyFinder() {
 
         {/* Modal Scrollable Body */}
         <div className="flex-1 p-6 sm:p-10 overflow-y-auto no-scrollbar flex items-center justify-center">
-          {step <= 4 ? (
-            <JourneyStep
-              step={step}
-              answers={answers}
-              onSelect={handleSelectOption}
-            />
-          ) : (
-            <JourneyResults
-              answers={answers}
-              onRestart={resetJourney}
-              onClose={closeJourney}
-            />
-          )}
+          <AnimatePresence mode="wait">
+            {step <= 4 ? (
+              <JourneyStep
+                key={`step-${step}`}
+                step={step}
+                answers={answers}
+                onSelect={handleSelectOption}
+              />
+            ) : (
+              <JourneyResults
+                key="results"
+                answers={answers}
+                onRestart={resetJourney}
+                onClose={closeJourney}
+              />
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Bottom Navigation Controls (for steps 1-4) */}
         {step <= 4 && (
-          <div className="px-6 py-4 border-t border-black/10 bg-white/60 flex items-center justify-between shrink-0">
+          <div className="px-4 sm:px-6 py-3.5 border-t border-[#EAEAEA] bg-white flex items-center justify-between shrink-0">
             {step > 1 ? (
               <button
                 type="button"

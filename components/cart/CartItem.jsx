@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Minus, Plus, Trash2 } from 'lucide-react';
+import { Minus, Plus } from 'lucide-react';
 import { useCartStore } from '@store/useCartStore';
 
 export default function CartItem({ item, compact = false, onCloseDrawer }) {
@@ -14,86 +14,91 @@ export default function CartItem({ item, compact = false, onCloseDrawer }) {
   const formattedLineTotal = `₹${lineTotalNum.toLocaleString('en-IN')}`;
 
   return (
-    <div className={`flex gap-4 items-start border-b border-black/8 py-4 ${compact ? 'text-xs' : 'text-sm'}`}>
-      {/* Product Image */}
+    <div className="flex gap-4 items-start py-4">
+      {/* Product Photography (White stage, no dark box, no force cropping) */}
       <Link
         href={`/products/${item.slug || item.productId}`}
         onClick={onCloseDrawer}
-        className="relative aspect-[4/3] w-20 sm:w-24 rounded-xl overflow-hidden bg-[#EFEAE2] border border-black/8 shrink-0 block group"
+        className={`relative aspect-[1/1] ${compact ? 'w-20 h-20' : 'w-24 h-24 sm:w-28 sm:h-28'} rounded-xs bg-white border border-[#EAEAEA] shrink-0 block overflow-hidden p-2 group`}
+        aria-label={`View ${item.name}`}
       >
         <Image
-          src={item.image || '/images/monolith.png'}
+          src={item.image || '/images/kokio_monolith_carryon.jpg'}
           alt={item.name}
           fill
-          sizes="100px"
-          className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-300"
+          sizes="80px"
+          className="object-contain object-center group-hover:scale-[1.02] transition-transform duration-300"
         />
       </Link>
 
       {/* Item Details */}
       <div className="flex-1 space-y-1 min-w-0">
-        <span className="text-[9px] font-sans tracking-[0.14em] uppercase text-xs tracking-[0.2em] font-bold text-[#B8892D] uppercase block truncate">
-          {item.categoryLabel || 'KOKIO EDITION'}
+        <span className="text-[10px] font-sans tracking-[0.12em] text-[#777777] uppercase font-medium block truncate">
+          {item.categoryLabel || item.collectionLabel || 'KOKIO'}
         </span>
+
         <Link
           href={`/products/${item.slug || item.productId}`}
           onClick={onCloseDrawer}
           className="block group"
         >
-          <h4 className="font-serif text-sm sm:text-base font-medium text-[#161616] group-hover:text-[#B8892D] transition-colors truncate">
+          <h4 className="font-serif text-sm sm:text-base font-light text-[#161616] group-hover:text-[#B8892D] transition-colors truncate">
             {item.name}
           </h4>
         </Link>
 
-        {item.variant && item.variant !== 'Default' && (
-          <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-[#777777] uppercase block">
-            Finish: {item.variant}
+        {item.variant && item.variant !== 'Default' && item.variant !== 'Default Edition' && (
+          <span className="text-[11px] font-sans text-[#777777] block">
+            Colour: {item.variant}
           </span>
         )}
 
         {/* Line Price */}
-        <div className="pt-1 flex items-center justify-between">
-          <span className="font-serif text-sm font-semibold text-[#161616]">
+        <div className="pt-0.5 flex items-center justify-between">
+          <span className="font-sans text-xs sm:text-sm font-medium text-[#161616]">
             {formattedLineTotal}
           </span>
-          <span className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-[#888888]">
-            ({item.price} ea)
-          </span>
+          {quantity > 1 && (
+            <span className="text-[10px] font-sans text-[#888888]">
+              ({item.price} each)
+            </span>
+          )}
         </div>
 
         {/* Quantity Controls & Remove Action */}
         <div className="pt-2 flex items-center justify-between gap-3">
-          <div className="inline-flex items-center bg-[#EFEAE2] border border-black/10 rounded-lg overflow-hidden">
+          <div className="inline-flex items-center border border-[#EAEAEA] rounded-xs bg-white">
             <button
+              type="button"
               onClick={() => updateQuantity(item.id, quantity - 1)}
               disabled={quantity <= 1}
-              className="min-h-[36px] min-w-[36px] px-2.5 text-[#161616] hover:bg-[#B8892D]/20 disabled:opacity-30 transition-colors flex items-center justify-center cursor-pointer"
+              className="min-h-[32px] min-w-[32px] flex items-center justify-center text-[#777777] hover:text-[#161616] disabled:opacity-30 transition-colors cursor-pointer"
               aria-label={`Decrease quantity of ${item.name}`}
             >
-              <Minus className="w-3 h-3" />
+              <Minus className="w-3 h-3 stroke-[1.5]" />
             </button>
-            <span className="w-8 text-center font-sans tracking-[0.14em] uppercase text-xs text-xs font-semibold text-[#161616]">
+            <span className="w-7 text-center font-sans text-xs font-medium text-[#161616]">
               {quantity}
             </span>
             <button
+              type="button"
               onClick={() => updateQuantity(item.id, quantity + 1)}
-              className="min-h-[36px] min-w-[36px] px-2.5 text-[#161616] hover:bg-[#B8892D]/20 transition-colors flex items-center justify-center cursor-pointer"
+              className="min-h-[32px] min-w-[32px] flex items-center justify-center text-[#777777] hover:text-[#161616] transition-colors cursor-pointer"
               aria-label={`Increase quantity of ${item.name}`}
             >
-              <Plus className="w-3 h-3" />
+              <Plus className="w-3 h-3 stroke-[1.5]" />
             </button>
           </div>
 
           <button
+            type="button"
             onClick={() => removeItem(item.id)}
-            className="text-[10px] font-sans tracking-[0.14em] uppercase text-xs text-[#888888] hover:text-[#B8892D] transition-colors flex items-center gap-1 cursor-pointer py-1 min-h-[36px] px-2"
+            className="text-[10px] font-sans tracking-wider uppercase text-[#777777] hover:text-[#B8892D] transition-colors cursor-pointer py-1 px-1.5"
             aria-label={`Remove ${item.name} from bag`}
           >
-            <Trash2 className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline uppercase">REMOVE</span>
+            REMOVE
           </button>
         </div>
-
       </div>
     </div>
   );

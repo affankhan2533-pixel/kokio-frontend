@@ -34,25 +34,25 @@ export default function AccountPage() {
   const [isGuestMode, setIsGuestMode] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#F8F6F2] text-[#161616] flex flex-col font-sans selection:bg-[#B8892D]/30 selection:text-[#161616]">
+    <div className="min-h-screen bg-white text-[#161616] flex flex-col font-sans selection:bg-[#B8892D]/20 selection:text-[#161616]">
       {/* Universal Header */}
       <Header />
 
       <main className="flex-1 w-full pt-28 pb-16 md:pt-36 md:pb-24">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 space-y-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 space-y-8 sm:space-y-10">
           
           {/* Breadcrumb & Page Header */}
-          <div className="space-y-3 border-b border-black/8 pb-6">
+          <div className="space-y-3 border-b border-[#EAEAEA] pb-6">
             <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs font-sans tracking-widest text-[#777777] uppercase">
-              <Link href="/" className="hover:text-[#B8892D] transition-colors">HOME</Link>
+              <Link href="/" className="hover:text-[#161616] transition-colors">HOME</Link>
               <span>/</span>
-              <span className="text-[#161616] font-semibold">YOUR KOKIO</span>
+              <span className="text-[#161616] font-medium">YOUR KOKIO</span>
             </nav>
 
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
-                <h1 className="font-serif text-3xl sm:text-5xl font-light text-[#161616]">
-                  YOUR <span className="italic font-normal text-champagne-gradient">KOKIO</span>
+                <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-[#161616]">
+                  YOUR KOKIO
                 </h1>
                 <p className="text-xs sm:text-sm text-[#666666] font-light mt-1">
                   A private space for your journeys, orders and preferences.
@@ -72,16 +72,16 @@ export default function AccountPage() {
 
           {/* Not Logged In Banner / Guest Mode state */}
           {!isGuestMode && (
-            <div className="bg-white rounded-xs p-6 sm:p-8 border border-black/8 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="bg-white rounded-xs p-5 sm:p-8 border border-[#EAEAEA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
               <div className="space-y-1.5 max-w-xl">
-                <span className="text-xs font-sans tracking-[0.25em] text-[#B8892D] uppercase font-semibold block">
+                <span className="text-xs font-sans tracking-[0.2em] text-[#B8892D] uppercase font-semibold block">
                   WELCOME TO KOKIO
                 </span>
-                <h2 className="font-serif text-2xl font-light text-[#161616]">
+                <h2 className="font-serif text-xl sm:text-2xl font-light text-[#161616]">
                   Sign in to access your personal space.
                 </h2>
                 <p className="text-xs text-[#666666] font-sans leading-relaxed">
-                  Register your aerospace aluminum luggage, track insured deliveries across India, and access dedicated care support.
+                  Register your pieces, track your dispatches, and access dedicated concierge support.
                 </p>
               </div>
 
@@ -104,10 +104,10 @@ export default function AccountPage() {
           )}
 
           {/* Account Sections Split Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-start">
             
             {/* Left Column (Navigation List): 4 cols on md */}
-            <nav className="md:col-span-4 bg-white rounded-xs p-2 sm:p-3 border border-black/8 shadow-xs space-y-1">
+            <nav className="md:col-span-4 bg-white rounded-xs p-2 sm:p-3 border border-[#EAEAEA] space-y-1">
               {SECTIONS.map((sec) => {
                 const Icon = sec.icon;
                 const isActive = activeTab === sec.id;
@@ -115,12 +115,19 @@ export default function AccountPage() {
                   <button
                     key={sec.id}
                     onClick={() => setActiveTab(sec.id)}
-                    className={`w-full px-4 py-3.5 rounded-xs flex items-center justify-between text-left text-xs font-sans uppercase tracking-wider transition-all duration-200 cursor-pointer min-h-[48px] ${
+                    className={`relative w-full px-4 py-3.5 rounded-xs flex items-center justify-between text-left text-xs font-sans uppercase tracking-wider transition-colors duration-200 cursor-pointer min-h-[48px] z-0 ${
                       isActive
-                        ? 'bg-[#161616] text-[#F8F6F2] font-semibold'
+                        ? 'text-[#F8F6F2] font-semibold'
                         : 'text-[#555555] hover:text-[#161616] hover:bg-[#F8F6F2]'
                     }`}
                   >
+                    {isActive && (
+                      <motion.div
+                        layoutId="accountTabActive"
+                        className="absolute inset-0 bg-[#161616] rounded-xs -z-10"
+                        transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                      />
+                    )}
                     <div className="flex items-center gap-3">
                       <Icon className={`w-4 h-4 ${isActive ? 'text-[#B8892D]' : 'text-[#888888]'}`} />
                       <span>{sec.label}</span>
@@ -136,10 +143,10 @@ export default function AccountPage() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.22, ease: 'easeOut' }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
                 >
                   {/* ORDERS TAB */}
                   {activeTab === 'orders' && (

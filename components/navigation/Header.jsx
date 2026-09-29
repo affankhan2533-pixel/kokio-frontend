@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ShoppingBag, Heart, User, Menu, X, Compass } from 'lucide-react';
 import { useCartStore } from '@store/useCartStore';
@@ -25,6 +26,8 @@ const NAV_CATEGORIES = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
+  const isCleanCanvas = pathname?.startsWith('/collections') || pathname?.startsWith('/products');
   const [scrolled, setScrolled] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
@@ -60,7 +63,9 @@ export default function Header() {
         onMouseLeave={handleMouseLeaveNav}
         className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 ${
           scrolled
-            ? 'bg-[#F8F6F2]/95 backdrop-blur-2xl border-b border-black/8 shadow-sm text-[#161616]'
+            ? 'bg-white/95 backdrop-blur-md border-b border-black/8 shadow-xs text-[#161616]'
+            : isCleanCanvas
+            ? 'bg-[#0D0D0D] border-b border-white/10 text-[#F8F6F2]'
             : 'bg-gradient-to-b from-[#0D0D0D]/90 via-[#0D0D0D]/40 to-transparent text-[#F8F6F2]'
         }`}
       >
@@ -69,22 +74,22 @@ export default function Header() {
 
         {/* Main Header Container */}
         <div
-          className={`max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between transition-all duration-300 ${
-            scrolled ? 'py-3' : 'py-4 md:py-5'
+          className={`max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between transition-all duration-300 ${
+            scrolled ? 'py-2 sm:py-3' : isCleanCanvas ? 'py-2.5 sm:py-3 md:py-3.5' : 'py-3 sm:py-4 md:py-5'
           }`}
         >
           {/* Mobile Hamburger Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className={`lg:hidden p-2 -ml-2 rounded-full transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center ${
+            className={`lg:hidden p-2 -ml-1 rounded-full transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center ${
               scrolled ? 'text-[#161616] hover:text-[#B8892D]' : 'text-[#F8F6F2] hover:text-[#B8892D]'
             }`}
             aria-label="Open Mobile Menu"
           >
-            <Menu className="w-6 h-6 stroke-[1.5]" />
+            <Menu className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.5]" />
           </button>
 
-          {/* Left / Brand Logotype */}
+          {/* Left / Brand Logotype (One line on mobile) */}
           <div className="flex flex-col items-start shrink-0 cursor-pointer group">
             <Link href="/" className="flex flex-col items-start shrink-0 select-none">
               <span
@@ -99,7 +104,7 @@ export default function Header() {
                 KOKIO
               </span>
               <span
-                className={`font-light uppercase tracking-[0.32em] transition-colors mt-0.5 ${
+                className={`hidden sm:block font-light uppercase tracking-[0.32em] transition-colors mt-0.5 ${
                   scrolled ? 'text-[#666666] group-hover:text-[#B8892D]' : 'text-[#EFEAE2]/80 group-hover:text-[#B8892D]'
                 }`}
                 style={{

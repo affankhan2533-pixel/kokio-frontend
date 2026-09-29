@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { ShoppingBag, Check, ShieldCheck, Truck, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ShoppingBag, Check } from 'lucide-react';
 import VariantSelector from '@components/pdp/VariantSelector';
 import QuantitySelector from '@components/pdp/QuantitySelector';
 import StickyPurchaseBar from '@components/pdp/StickyPurchaseBar';
@@ -29,14 +30,19 @@ export default function ProductClientActions({ product }) {
       quantity,
     });
     setIsAdded(true);
-    setTimeout(() => setIsAdded(false), 1200);
+    setTimeout(() => setIsAdded(false), 900);
     openCart();
   };
 
   return (
-    <div className="space-y-6">
-      {/* Color / Variant Selector */}
-      {product.colors && (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      className="space-y-5"
+    >
+      {/* Variant / Colour Swatches */}
+      {product.colors && product.colors.length > 0 && (
         <VariantSelector
           colors={product.colors}
           selectedColor={selectedColor}
@@ -44,64 +50,52 @@ export default function ProductClientActions({ product }) {
         />
       )}
 
-      {/* Quantity Selector, Add To Bag CTA Row & Discreet Wishlist */}
-      <div className="flex items-end gap-3 pt-2">
+      {/* Quantity & ADD TO BAG Row + Discreet Wishlist */}
+      <div className="flex items-center gap-3 pt-1">
         <QuantitySelector
           quantity={quantity}
           onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
           onIncrease={() => setQuantity((q) => q + 1)}
         />
 
+        {/* Primary CTA: ADD TO BAG */}
         <button
+          type="button"
           onClick={handleAddToCart}
-          className="flex-1 min-h-[48px] px-6 sm:px-8 py-3.5 bg-[#B8892D] hover:bg-[#161616] text-[#111111] hover:text-[#F8F6F2] rounded-xs text-xs font-sans font-semibold tracking-[0.16em] uppercase transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer border border-[#B8892D] hover:border-[#161616]"
+          className="flex-1 min-h-[44px] px-6 py-3 bg-[#161616] hover:bg-[#B8892D] text-[#F8F6F2] hover:text-[#111111] rounded-xs text-xs font-sans font-medium tracking-[0.14em] uppercase transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer group"
           aria-label={`Add ${product.name} to bag`}
         >
           {isAdded ? (
             <>
-              <Check className="w-4 h-4" />
+              <Check className="w-4 h-4 stroke-[2]" />
               <span>ADDED TO BAG</span>
             </>
           ) : (
             <>
-              <ShoppingBag className="w-4 h-4" />
-              <span>ADD TO BAG • {product.price}</span>
+              <ShoppingBag className="w-4 h-4 stroke-[1.5]" />
+              <span>ADD TO BAG</span>
+              <span className="inline-block transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
             </>
           )}
         </button>
 
-        {/* Discreet Wishlist Control */}
-        <div className="border border-black/15 hover:border-[#B8892D] rounded-xs bg-white transition-colors flex items-center justify-center min-h-[48px] min-w-[48px] shrink-0">
+        {/* Discreet Wishlist Action (No giant button, no circular background) */}
+        <div className="border border-[#EAEAEA] rounded-xs flex items-center justify-center min-h-[44px] min-w-[44px] shrink-0 bg-white">
           <WishlistButton
             productId={product.id}
             productName={product.name}
-            className="!min-h-[48px] !min-w-[48px]"
+            size="sm"
+            className="!min-h-[44px] !min-w-[44px] !p-0"
           />
         </div>
       </div>
 
-      {/* Verified Trust Badges */}
-      <div className="grid grid-cols-3 gap-2 pt-2 text-[11px] font-sans text-[#555555] border-y border-black/8 py-3">
-        <div className="flex items-center gap-1.5">
-          <Truck className="w-3.5 h-3.5 text-[#B8892D] shrink-0" />
-          <span>Insured Transit</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <ShieldCheck className="w-3.5 h-3.5 text-[#B8892D] shrink-0" />
-          <span>KOKIO Care</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-[#B8892D] shrink-0" />
-          <span>Bespoke Detailing</span>
-        </div>
-      </div>
-
-      {/* Sticky Bottom Purchase Bar */}
+      {/* Subtle Sticky Purchase Bar */}
       <StickyPurchaseBar
         product={product}
         selectedColor={selectedColor}
         quantity={quantity}
       />
-    </div>
+    </motion.div>
   );
 }

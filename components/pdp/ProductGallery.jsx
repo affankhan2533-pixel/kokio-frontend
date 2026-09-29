@@ -13,7 +13,7 @@ export default function ProductGallery({ product }) {
   const [isZoomed, setIsZoomed] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Touch swipe refs
+  // Touch swipe tracking
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
@@ -31,7 +31,7 @@ export default function ProductGallery({ product }) {
     setIsZoomed(false);
   };
 
-  // Keyboard navigation for fullscreen gallery
+  // Keyboard navigation for fullscreen modal
   useEffect(() => {
     if (!isFullscreen) return;
 
@@ -56,7 +56,7 @@ export default function ProductGallery({ product }) {
     };
   }, [isFullscreen, images.length]);
 
-  // Touch swipe handling
+  // Touch gestures for mobile native swipe
   const handleTouchStart = (e) => {
     touchStartX.current = e.targetTouches[0].clientX;
   };
@@ -67,7 +67,7 @@ export default function ProductGallery({ product }) {
 
   const handleTouchEnd = () => {
     const diff = touchStartX.current - touchEndX.current;
-    if (Math.abs(diff) > 45 && touchEndX.current !== 0) {
+    if (Math.abs(diff) > 40 && touchEndX.current !== 0) {
       if (diff > 0) {
         handleNext();
       } else {
@@ -78,19 +78,23 @@ export default function ProductGallery({ product }) {
     touchEndX.current = 0;
   };
 
-  // Format single-digit pagination to "01 / 03"
   const formattedIndex = String(activeIndex + 1).padStart(2, '0');
   const formattedTotal = String(images.length).padStart(2, '0');
 
   return (
-    <div className="space-y-4">
-      {/* Primary High-Resolution Stage */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="space-y-4 select-none"
+    >
+      {/* Primary Product Canvas (Pure white, no heavy border, generous scale) */}
       <div
         onClick={() => setIsFullscreen(true)}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="relative aspect-[4/3] sm:aspect-[1/1] w-full rounded-xs overflow-hidden bg-[#EFEAE2] border border-black/8 shadow-xs group cursor-zoom-in"
+        className="relative aspect-[1/1] w-full bg-white flex items-center justify-center overflow-hidden group cursor-zoom-in"
         role="button"
         tabIndex={0}
         aria-label={`Open fullscreen view of ${product.name}, image ${activeIndex + 1} of ${images.length}`}
@@ -107,7 +111,7 @@ export default function ProductGallery({ product }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.22, ease: 'easeOut' }}
+            transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
             className="relative w-full h-full"
           >
             <Image
@@ -115,27 +119,29 @@ export default function ProductGallery({ product }) {
               alt={`${product.name} View ${activeIndex + 1}`}
               fill
               priority={activeIndex === 0}
-              sizes="(max-width: 1024px) 100vw, 55vw"
-              className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+              sizes="(max-width: 1024px) 100vw, 60vw"
+              className="object-contain object-center p-6 sm:p-10 lg:p-12 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.018]"
             />
           </motion.div>
         </AnimatePresence>
 
-        {/* Hover Expand Hint (Desktop) */}
-        <div className="hidden lg:flex absolute top-3 right-3 bg-[#111111]/70 hover:bg-[#111111] backdrop-blur-xs text-[#F8F6F2] p-2 rounded-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-white/10 items-center gap-1.5 text-[10px] font-sans tracking-wider uppercase">
+        {/* Quiet Desktop Fullscreen Trigger */}
+        <div className="hidden lg:flex absolute bottom-3 right-3 text-[#777777] hover:text-[#161616] p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 items-center gap-1 text-[11px] font-sans uppercase tracking-wider">
           <Maximize2 className="w-3.5 h-3.5" />
-          <span>FULLSCREEN</span>
+          <span>EXPAND</span>
         </div>
 
-        {/* Real Pagination Counter Overlay (Mobile) */}
-        <div className="absolute bottom-3 right-3 bg-[#111111]/85 backdrop-blur-xs px-2.5 py-1 rounded-xs text-[10px] font-sans tracking-[0.16em] uppercase text-[#F8F6F2] border border-white/10 sm:hidden">
-          {formattedIndex} / {formattedTotal}
-        </div>
+        {/* Discreet Mobile Pagination Badge */}
+        {images.length > 1 && (
+          <div className="sm:hidden absolute bottom-3 right-3 text-[11px] font-sans tracking-widest text-[#777777] bg-white/90 backdrop-blur-xs px-2 py-0.5 border border-black/10 rounded-xs">
+            {formattedIndex} / {formattedTotal}
+          </div>
+        )}
       </div>
 
-      {/* Supporting Thumbnail Selector Bar */}
+      {/* Supporting Minimal Thumbnails (Desktop/Tablet) */}
       {images.length > 1 && (
-        <div className="grid grid-cols-3 gap-3">
+        <div className="hidden sm:flex items-center gap-3 pt-1 overflow-x-auto no-scrollbar">
           {images.map((img, idx) => {
             const isActive = activeIndex === idx;
             return (
@@ -145,10 +151,10 @@ export default function ProductGallery({ product }) {
                   setActiveIndex(idx);
                   setIsZoomed(false);
                 }}
-                className={`relative aspect-[4/3] rounded-xs overflow-hidden bg-[#EFEAE2] border transition-all duration-200 cursor-pointer min-h-[44px] ${
+                className={`relative w-16 h-16 sm:w-20 sm:h-20 bg-white shrink-0 overflow-hidden cursor-pointer transition-all duration-200 ${
                   isActive
-                    ? 'border-[#B8892D] ring-1 ring-[#B8892D] shadow-xs'
-                    : 'border-black/8 opacity-75 hover:opacity-100 hover:border-black/20'
+                    ? 'border-b-2 border-[#B8892D]'
+                    : 'border-b-2 border-transparent opacity-60 hover:opacity-100'
                 }`}
                 aria-label={`Select product image view ${idx + 1} of ${images.length}`}
               >
@@ -156,8 +162,8 @@ export default function ProductGallery({ product }) {
                   src={img}
                   alt={`Thumbnail ${idx + 1}`}
                   fill
-                  sizes="15vw"
-                  className="object-cover object-center"
+                  sizes="80px"
+                  className="object-contain object-center p-1.5"
                 />
               </button>
             );
@@ -165,45 +171,49 @@ export default function ProductGallery({ product }) {
         </div>
       )}
 
-      {/* Premium Fullscreen Product Gallery (Portal) */}
+      {/* Fullscreen Product Gallery (Portal) */}
       {mounted &&
         createPortal(
           <AnimatePresence>
             {isFullscreen && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.995 }}
+                initial={{ opacity: 0, scale: 0.99 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.995 }}
+                exit={{ opacity: 0, scale: 0.99 }}
                 transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                className="fixed inset-0 z-70 bg-[#0D0D0D]/98 text-[#F8F6F2] flex flex-col justify-between overflow-hidden select-none"
+                className="fixed inset-0 z-70 bg-white text-[#161616] flex flex-col justify-between overflow-hidden select-none"
                 role="dialog"
                 aria-modal="true"
                 aria-label={`Fullscreen media viewer for ${product.name}`}
               >
-                {/* Minimal Top Controls Bar */}
-                <header className="px-6 py-4 border-b border-white/10 flex items-center justify-between z-20 bg-[#0D0D0D]/90 backdrop-blur-xs">
-                  {/* Left: Product Name & Collection */}
+                {/* Minimal Header */}
+                <header className="px-6 py-4 border-b border-[#EAEAEA] flex items-center justify-between z-20 bg-white">
                   <div className="flex flex-col truncate max-w-[45%]">
-                    <span className="text-[9px] font-sans text-[#B8892D] tracking-[0.2em] uppercase font-semibold truncate">
+                    <span className="text-[10px] font-sans text-[#777777] uppercase tracking-[0.14em] font-medium truncate">
                       {product.collectionLabel || product.categoryLabel}
                     </span>
-                    <h2 className="font-serif text-sm sm:text-base font-light text-[#F8F6F2] truncate">
+                    <h2 className="font-serif text-base sm:text-lg font-light text-[#161616] truncate">
                       {product.name}
                     </h2>
                   </div>
 
-                  {/* Center: Pagination Counter */}
-                  <div className="text-xs font-sans tracking-[0.25em] text-[#CCCCCC] uppercase font-medium">
-                    {formattedIndex} <span className="text-white/30">/</span> {formattedTotal}
-                  </div>
+                  {/* Centered Counter (Fade on change) */}
+                  <motion.div
+                    key={formattedIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-xs font-sans tracking-[0.2em] text-[#777777] uppercase"
+                  >
+                    {formattedIndex} / {formattedTotal}
+                  </motion.div>
 
-                  {/* Right: Zoom & Close Controls */}
+                  {/* Right Controls */}
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setIsZoomed(!isZoomed)}
-                      className="min-h-[44px] min-w-[44px] flex items-center justify-center text-[#F8F6F2] hover:text-[#B8892D] transition-colors rounded-full hover:bg-white/10 cursor-pointer"
-                      aria-label={isZoomed ? 'Reset Zoom' : 'Zoom In 1.5x'}
-                      title={isZoomed ? 'Reset Zoom' : 'Zoom In'}
+                      className="min-h-[44px] min-w-[44px] flex items-center justify-center text-[#161616] hover:text-[#B8892D] transition-colors cursor-pointer"
+                      aria-label={isZoomed ? 'Reset Zoom' : 'Zoom In'}
                     >
                       {isZoomed ? (
                         <ZoomOut className="w-5 h-5 stroke-[1.5]" />
@@ -217,7 +227,7 @@ export default function ProductGallery({ product }) {
                         setIsFullscreen(false);
                         setIsZoomed(false);
                       }}
-                      className="min-h-[44px] min-w-[44px] flex items-center justify-center text-[#F8F6F2] hover:text-[#B8892D] transition-colors rounded-full hover:bg-white/10 cursor-pointer"
+                      className="min-h-[44px] min-w-[44px] flex items-center justify-center text-[#161616] hover:text-[#B8892D] transition-colors cursor-pointer"
                       aria-label="Close Fullscreen Gallery"
                     >
                       <X className="w-5 h-5 stroke-[1.5]" />
@@ -227,26 +237,24 @@ export default function ProductGallery({ product }) {
 
                 {/* Main Fullscreen Stage */}
                 <div
-                  className="relative flex-1 w-full h-full flex items-center justify-center overflow-hidden p-4 sm:p-8"
+                  className="relative flex-1 w-full h-full flex items-center justify-center overflow-hidden p-4 sm:p-10"
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
                 >
-                  {/* Previous Control Button */}
                   {images.length > 1 && (
                     <button
                       onClick={handlePrev}
-                      className="absolute left-4 sm:left-6 z-20 min-h-[44px] min-w-[44px] p-2 rounded-full bg-[#161616]/80 hover:bg-[#B8892D] text-[#F8F6F2] hover:text-[#111111] transition-all cursor-pointer flex items-center justify-center border border-white/10"
-                      aria-label="Previous product image"
+                      className="absolute left-4 sm:left-8 z-20 min-h-[44px] min-w-[44px] text-[#161616] hover:text-[#B8892D] transition-all cursor-pointer flex items-center justify-center group"
+                      aria-label="Previous image"
                     >
-                      <ChevronLeft className="w-5 h-5" />
+                      <ChevronLeft className="w-6 h-6 stroke-[1.5] transition-transform duration-200 group-hover:-translate-x-[3px]" />
                     </button>
                   )}
 
-                  {/* High Resolution Centered Image Canvas */}
                   <div
                     onClick={() => setIsZoomed(!isZoomed)}
-                    className={`relative w-full h-full max-w-5xl max-h-[82vh] overflow-hidden flex items-center justify-center cursor-${
+                    className={`relative w-full h-full max-w-4xl max-h-[80vh] overflow-hidden flex items-center justify-center cursor-${
                       isZoomed ? 'zoom-out' : 'zoom-in'
                     }`}
                   >
@@ -256,16 +264,16 @@ export default function ProductGallery({ product }) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.18, ease: 'easeOut' }}
+                        transition={{ duration: 0.22, ease: 'easeOut' }}
                         className="relative w-full h-full"
                       >
                         <Image
                           src={images[activeIndex]}
-                          alt={`${product.name} - Fullscreen view ${activeIndex + 1}`}
+                          alt={`${product.name} - View ${activeIndex + 1}`}
                           fill
                           sizes="100vw"
                           className={`object-contain transition-transform duration-300 ease-out ${
-                            isZoomed ? 'scale-[1.6]' : 'scale-100'
+                            isZoomed ? 'scale-[1.5]' : 'scale-100'
                           }`}
                           priority
                         />
@@ -273,21 +281,20 @@ export default function ProductGallery({ product }) {
                     </AnimatePresence>
                   </div>
 
-                  {/* Next Control Button */}
                   {images.length > 1 && (
                     <button
                       onClick={handleNext}
-                      className="absolute right-4 sm:right-6 z-20 min-h-[44px] min-w-[44px] p-2 rounded-full bg-[#161616]/80 hover:bg-[#B8892D] text-[#F8F6F2] hover:text-[#111111] transition-all cursor-pointer flex items-center justify-center border border-white/10"
-                      aria-label="Next product image"
+                      className="absolute right-4 sm:right-8 z-20 min-h-[44px] min-w-[44px] text-[#161616] hover:text-[#B8892D] transition-all cursor-pointer flex items-center justify-center group"
+                      aria-label="Next image"
                     >
-                      <ChevronRight className="w-5 h-5" />
+                      <ChevronRight className="w-6 h-6 stroke-[1.5] transition-transform duration-200 group-hover:translate-x-[3px]" />
                     </button>
                   )}
                 </div>
 
-                {/* Minimal Bottom Thumbnail Indicator Strip */}
+                {/* Minimal Bottom Thumbnail Strip */}
                 {images.length > 1 && (
-                  <footer className="px-6 py-4 border-t border-white/10 flex items-center justify-center gap-3 z-20 bg-[#0D0D0D]/90 backdrop-blur-xs">
+                  <footer className="px-6 py-3 border-t border-[#EAEAEA] flex items-center justify-center gap-3 z-20 bg-white">
                     {images.map((img, idx) => (
                       <button
                         key={img + idx}
@@ -295,19 +302,19 @@ export default function ProductGallery({ product }) {
                           setActiveIndex(idx);
                           setIsZoomed(false);
                         }}
-                        className={`relative w-12 h-9 sm:w-16 sm:h-12 rounded-xs overflow-hidden border transition-all cursor-pointer min-h-[36px] ${
+                        className={`relative w-12 h-12 rounded-xs overflow-hidden cursor-pointer transition-all ${
                           activeIndex === idx
-                            ? 'border-[#B8892D] ring-1 ring-[#B8892D]'
-                            : 'border-white/20 opacity-50 hover:opacity-100'
+                            ? 'border-b-2 border-[#B8892D]'
+                            : 'border-b-2 border-transparent opacity-50 hover:opacity-100'
                         }`}
-                        aria-label={`Jump to image view ${idx + 1}`}
+                        aria-label={`Jump to image ${idx + 1}`}
                       >
                         <Image
                           src={img}
                           alt={`Thumbnail ${idx + 1}`}
                           fill
-                          sizes="64px"
-                          className="object-cover object-center"
+                          sizes="48px"
+                          className="object-contain object-center p-1"
                         />
                       </button>
                     ))}
@@ -318,6 +325,6 @@ export default function ProductGallery({ product }) {
           </AnimatePresence>,
           document.body
         )}
-    </div>
+    </motion.div>
   );
 }

@@ -45,25 +45,25 @@ export default function WishlistPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F6F2] text-[#161616] flex flex-col font-sans selection:bg-[#B8892D]/30 selection:text-[#161616]">
+    <div className="min-h-screen bg-white text-[#161616] flex flex-col font-sans selection:bg-[#B8892D]/20 selection:text-[#161616]">
       {/* Universal Navigation Header */}
       <Header />
 
       <main className="flex-1 w-full pt-28 pb-16 md:pt-36 md:pb-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-8">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
           
           {/* Breadcrumbs & Title */}
-          <div className="space-y-3 border-b border-black/8 pb-6">
+          <div className="space-y-3 border-b border-[#EAEAEA] pb-6">
             <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-[10px] font-sans tracking-widest text-[#777777] uppercase font-semibold">
-              <Link href="/" className="hover:text-[#B8892D] transition-colors">HOME</Link>
+              <Link href="/" className="hover:text-[#161616] transition-colors">HOME</Link>
               <span>/</span>
-              <span className="text-[#161616] font-semibold">WISHLIST</span>
+              <span className="text-[#161616] font-medium">WISHLIST</span>
             </nav>
 
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
-                <h1 className="font-serif text-3xl sm:text-5xl font-light text-[#161616]">
-                  WISH<span className="italic font-normal text-champagne-gradient">LIST</span>
+                <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-[#161616]">
+                  WISHLIST
                 </h1>
                 <p className="text-xs sm:text-sm text-[#666666] font-light mt-1 font-sans">
                   Pieces you&apos;ve chosen to revisit.
@@ -132,16 +132,16 @@ export default function WishlistPage() {
                       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                       key={item.id}
-                      className="group bg-white rounded-xs border border-black/8 overflow-hidden flex flex-col justify-between hover:border-[#B8892D]/40 transition-all duration-300"
+                      className="group bg-white rounded-xs border border-[#EAEAEA] overflow-hidden flex flex-col justify-between hover:border-[#161616] transition-all duration-300"
                     >
                       {/* Image Area with Remove Button */}
-                      <div className="relative aspect-[4/5] bg-[#F0ECE1] overflow-hidden">
-                        <Link href={`/products/${item.slug}`} className="block w-full h-full">
+                      <div className="relative aspect-[1/1] bg-white overflow-hidden p-3 border-b border-[#EAEAEA]">
+                        <Link href={`/products/${item.slug}`} className="block w-full h-full relative">
                           <Image
                             src={item.image}
                             alt={item.name}
                             fill
-                            className="object-cover object-center group-hover:scale-[1.025] transition-transform duration-500"
+                            className="object-contain object-center group-hover:scale-[1.02] transition-transform duration-300"
                             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                           />
                         </Link>
@@ -149,17 +149,12 @@ export default function WishlistPage() {
                         {/* Discreet Remove Button */}
                         <button
                           onClick={() => handleRemove(item.id)}
-                          className="absolute top-2.5 right-2.5 p-2 bg-[#F8F6F2]/90 hover:bg-[#161616] text-[#777777] hover:text-[#F8F6F2] rounded-full transition-all duration-200 cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center shadow-xs"
+                          className="absolute top-2.5 right-2.5 p-1.5 bg-white/90 hover:bg-[#161616] text-[#777777] hover:text-white rounded-full transition-colors cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center border border-[#EAEAEA]"
                           aria-label={`Remove ${item.name} from wishlist`}
                           title="Remove"
                         >
-                          <X className="w-4 h-4 stroke-[1.5]" />
+                          <X className="w-3.5 h-3.5 stroke-[1.5]" />
                         </button>
-
-                        {/* Material Tag */}
-                        <span className="absolute bottom-2.5 left-2.5 px-2 py-0.5 bg-[#161616]/85 backdrop-blur-xs text-[#F8F6F2] text-[9px] font-sans uppercase tracking-wider rounded-xs">
-                          {item.materialType || 'BESPOKE'}
-                        </span>
                       </div>
 
                       {/* Product Metadata */}

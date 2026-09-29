@@ -1,71 +1,82 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, ShieldCheck, Truck, Sparkles, Check } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useCartStore } from '@store/useCartStore';
 
 export default function CartSummary({ isDrawer = false, onCloseDrawer }) {
   const { subtotal } = useCartStore();
-
   const formattedSubtotal = `₹${subtotal.toLocaleString('en-IN')}`;
 
   return (
     <div className="space-y-4 text-[#161616]">
       {/* Subtotal Row */}
-      <div className="space-y-2 border-t border-black/10 pt-4">
-        <div className="flex items-center justify-between font-serif">
-          <span className="text-sm uppercase tracking-wider text-[#777777] font-sans text-xs font-semibold">SUBTOTAL</span>
-          <span className="text-xl sm:text-2xl font-semibold text-[#161616] font-sans">{formattedSubtotal}</span>
-        </div>
-        <p className="text-[11px] text-[#777777] font-light leading-tight font-sans">
-          Taxes included. Insured domestic delivery calculated at checkout across India.
-        </p>
-      </div>
-
-      {/* Verified India Shipping Tag */}
-      <div className="bg-[#EFEAE2]/60 rounded-xs p-3 border border-black/8 flex items-center gap-2 text-xs text-[#555555]">
-        <Truck className="w-4 h-4 text-[#B8892D] shrink-0" />
-        <span className="text-[11px] font-sans uppercase font-medium">
-          Insured Express Delivery Across India
+      <div className="flex items-center justify-between">
+        <span className="text-xs font-sans tracking-[0.12em] uppercase text-[#777777] font-medium">
+          SUBTOTAL
         </span>
+        <motion.span
+          key={formattedSubtotal}
+          initial={{ opacity: 0.5 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          className="font-sans text-base sm:text-lg font-medium text-[#161616]"
+        >
+          {formattedSubtotal}
+        </motion.span>
       </div>
 
-      {/* CTA Buttons */}
-      <div className="space-y-2 pt-2">
-        <Link
-          href="/checkout"
-          onClick={isDrawer ? onCloseDrawer : undefined}
-          className="btn-primary-gold w-full min-h-[48px]"
-        >
-          <span>PROCEED TO CHECKOUT</span>
-          <ArrowUpRight className="w-4 h-4" />
-        </Link>
+      {!isDrawer && (
+        <div className="flex items-center justify-between pt-1">
+          <span className="text-xs font-sans tracking-[0.12em] uppercase text-[#161616] font-semibold">
+            TOTAL
+          </span>
+          <span className="font-sans text-base sm:text-lg font-semibold text-[#161616]">
+            {formattedSubtotal}
+          </span>
+        </div>
+      )}
 
+      {/* Thin Divider */}
+      <div className="border-b border-[#EAEAEA]" />
+
+      {/* Buttons (Approved KOKIO Luxury System) */}
+      <div className="space-y-2 pt-1">
+        {/* Primary CTA: CHECKOUT → */}
+        <motion.div
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Link
+            href="/checkout"
+            onClick={isDrawer ? onCloseDrawer : undefined}
+            className="w-full min-h-[44px] px-6 py-3 bg-[#161616] hover:bg-[#B8892D] text-[#F8F6F2] hover:text-[#111111] rounded-xs text-xs font-sans font-medium tracking-[0.14em] uppercase transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer group"
+          >
+            <span>CHECKOUT</span>
+            <span className="inline-block transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
+          </Link>
+        </motion.div>
+
+        {/* Secondary Action */}
         {isDrawer ? (
           <Link
             href="/cart"
             onClick={onCloseDrawer}
-            className="btn-secondary-luxury w-full min-h-[44px]"
+            className="w-full min-h-[42px] px-6 py-2.5 bg-white hover:bg-[#F8F6F2] text-[#161616] border border-[#EAEAEA] rounded-xs text-xs font-sans font-medium tracking-[0.14em] uppercase transition-colors flex items-center justify-center gap-1.5 cursor-pointer group"
           >
-            <span>VIEW FULL BAG</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-[#B8892D]" />
+            <span>VIEW BAG</span>
+            <span className="inline-block transition-transform duration-200 group-hover:translate-x-[2px]">→</span>
           </Link>
         ) : (
           <Link
             href="/collections/all"
-            className="btn-secondary-luxury w-full min-h-[44px]"
+            className="w-full min-h-[42px] px-6 py-2.5 bg-white hover:bg-[#F8F6F2] text-[#161616] border border-[#EAEAEA] rounded-xs text-xs font-sans font-medium tracking-[0.14em] uppercase transition-colors flex items-center justify-center gap-1.5 cursor-pointer group"
           >
             <span>CONTINUE EXPLORING</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-[#B8892D]" />
+            <span className="inline-block transition-transform duration-200 group-hover:translate-x-[2px]">→</span>
           </Link>
         )}
-      </div>
-
-      {/* Trust Guarantee */}
-      <div className="pt-1 flex items-center justify-center gap-2 text-[11px] font-sans text-[#777777] uppercase">
-        <ShieldCheck className="w-3.5 h-3.5 text-[#B8892D]" />
-        <span>KOKIO Care Warranty & Services</span>
       </div>
     </div>
   );

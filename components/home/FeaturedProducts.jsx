@@ -94,17 +94,17 @@ export default function FeaturedProducts() {
   return (
     <section
       id="featured"
-      className="py-16 md:py-24 bg-[#F8F6F2] text-[#161616]"
+      className="py-10 sm:py-14 md:py-20 bg-[#F8F6F2] text-[#161616]"
       aria-label="Featured Products"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-6 md:space-y-10">
         
         {/* Section Header with Scroll Reveal */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-black/8 pb-6"
         >
           <div className="space-y-1">
@@ -115,7 +115,7 @@ export default function FeaturedProducts() {
               Featured <span className="italic font-normal text-champagne-gradient">Pieces</span>
             </h2>
           </div>
-          <p className="text-xs text-[#666666] font-light max-w-xs font-sans">
+          <p className="text-xs text-[#3E3E3E] font-normal max-w-xs font-sans">
             A considered selection for modern journeys.
           </p>
         </motion.div>
@@ -129,7 +129,7 @@ export default function FeaturedProducts() {
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id)}
                 className={`text-xs font-sans tracking-[0.16em] uppercase transition-colors py-1 relative shrink-0 cursor-pointer ${
-                  isActive ? 'text-[#161616] font-semibold' : 'text-[#777777] hover:text-[#161616]'
+                  isActive ? 'text-[#161616] font-semibold' : 'text-[#555555] hover:text-[#161616]'
                 }`}
               >
                 <span>{tab.label}</span>
@@ -156,16 +156,16 @@ export default function FeaturedProducts() {
                 <motion.div
                   key={product.id}
                   layout
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
+                  viewport={{ once: true, amount: 0.05 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{
-                    duration: 0.45,
-                    delay: idx * 0.08,
+                    duration: 0.38,
+                    delay: Math.min(idx * 0.05, 0.15),
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="group relative bg-white rounded-xs overflow-hidden border border-black/8 hover:border-[#B8892D]/40 transition-all duration-300 flex flex-col justify-between"
+                  className="group relative bg-white rounded-xs overflow-hidden border border-black/8 hover:border-[#B8892D]/40 transition-colors duration-250 flex flex-col justify-between"
                 >
                   {/* Image Container */}
                   <Link href={productUrl} className="relative aspect-[4/5] w-full overflow-hidden bg-[#EFEAE2] block">
@@ -174,7 +174,7 @@ export default function FeaturedProducts() {
                       alt={product.name}
                       fill
                       sizes="(max-width: 768px) 50vw, 25vw"
-                      className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-300 ease-out"
+                      className="object-cover object-center group-hover:scale-[1.018] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
                       loading="lazy"
                     />
 
@@ -186,12 +186,12 @@ export default function FeaturedProducts() {
                     {/* Desktop Quick Add Hover Button */}
                     <button
                       onClick={(e) => handleQuickAdd(product, e)}
-                      className="hidden lg:flex absolute bottom-3 right-3 left-3 bg-[#161616] hover:bg-[#B8892D] text-[#F8F6F2] hover:text-[#111111] py-2.5 px-4 rounded-xs text-xs font-sans font-semibold tracking-wider uppercase transition-all duration-200 opacity-0 group-hover:opacity-100 translate-y-1.5 group-hover:translate-y-0 cursor-pointer items-center justify-center gap-2 z-10"
+                      className="hidden lg:flex absolute bottom-3 right-3 left-3 bg-[#161616] hover:bg-[#B8892D] text-[#F8F6F2] hover:text-[#111111] py-2.5 px-4 rounded-xs text-xs font-sans font-semibold tracking-wider uppercase transition-all duration-200 opacity-0 group-hover:opacity-100 cursor-pointer items-center justify-center gap-2 z-10"
                     >
                       {isAdded ? (
                         <>
                           <Check className="w-3.5 h-3.5" />
-                          <span>ADDED</span>
+                          <span>ADDED TO BAG</span>
                         </>
                       ) : (
                         <>
@@ -203,14 +203,14 @@ export default function FeaturedProducts() {
                   </Link>
 
                   {/* Card Content */}
-                  <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3 group-hover:-translate-y-0.5 transition-transform duration-300">
+                  <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                     <div className="space-y-1">
                       <Link href={productUrl}>
                         <h3 className="font-serif text-base sm:text-lg font-light text-[#161616] group-hover:text-[#B8892D] transition-colors leading-snug line-clamp-1">
                           {product.name}
                         </h3>
                       </Link>
-                      <p className="text-xs text-[#666666] font-light leading-relaxed line-clamp-2">
+                      <p className="text-xs text-[#4A4A4A] font-normal leading-relaxed line-clamp-2">
                         {product.desc}
                       </p>
                     </div>
@@ -226,14 +226,14 @@ export default function FeaturedProducts() {
                         onClick={(e) => handleQuickAdd(product, e)}
                         className="lg:hidden text-xs font-sans font-semibold text-[#B8892D] uppercase flex items-center gap-1 cursor-pointer py-1 min-h-[44px]"
                       >
-                        <span>{isAdded ? 'ADDED' : 'ADD'}</span>
+                        <span>{isAdded ? 'ADDED TO BAG' : 'ADD'}</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </button>
 
                       {/* Desktop Link indicator */}
-                      <Link href={productUrl} className="hidden lg:inline-flex text-xs font-sans font-medium text-[#777777] group-hover:text-[#B8892D] transition-colors uppercase items-center gap-1 min-h-[44px]">
+                      <Link href={productUrl} className="hidden lg:inline-flex text-xs font-sans font-medium text-[#555555] group-hover:text-[#B8892D] transition-colors uppercase items-center gap-1 min-h-[44px]">
                         <span>EXPLORE</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                        <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-[3px]" />
                       </Link>
                     </div>
                   </div>

@@ -9,6 +9,13 @@
     --color-charcoal: #161616;
     --color-slate: #666666;
     --color-divider: rgba(0, 0, 0, 0.08);
+
+    /* KOKIO Phase 23 Motion Tokens */
+    --kokio-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --kokio-motion-micro: 200ms;
+    --kokio-motion-standard: 280ms;
+    --kokio-motion-reveal: 550ms;
+    --kokio-scale-image: 1.018;
   }
 
   html {

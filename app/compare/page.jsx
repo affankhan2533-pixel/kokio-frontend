@@ -29,24 +29,24 @@ export default function ComparePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F6F2] text-[#161616] flex flex-col font-sans selection:bg-[#B8892D]/30 selection:text-[#161616]">
+    <div className="min-h-screen bg-white text-[#161616] flex flex-col font-sans selection:bg-[#B8892D]/20 selection:text-[#161616]">
       <Header />
 
       <main className="flex-1 w-full pt-28 pb-16 md:pt-36 md:pb-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-8">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
           
           {/* Breadcrumb & Header */}
-          <div className="space-y-3 border-b border-black/8 pb-6">
+          <div className="space-y-3 border-b border-[#EAEAEA] pb-6">
             <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-[10px] font-sans tracking-widest text-[#777777] uppercase font-semibold">
-              <Link href="/" className="hover:text-[#B8892D] transition-colors">HOME</Link>
+              <Link href="/" className="hover:text-[#161616] transition-colors">HOME</Link>
               <span>/</span>
-              <span className="text-[#161616] font-semibold">COMPARE</span>
+              <span className="text-[#161616] font-medium">COMPARE</span>
             </nav>
 
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
-                <h1 className="font-serif text-3xl sm:text-5xl font-light text-[#161616]">
-                  COMPARE <span className="italic font-normal text-champagne-gradient">PIECES</span>
+                <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-[#161616]">
+                  COMPARE PIECES
                 </h1>
                 <p className="text-xs sm:text-sm text-[#666666] font-light mt-1">
                   Side-by-side metrology and craftsmanship specifications.
@@ -56,7 +56,7 @@ export default function ComparePage() {
               {products.length > 0 && (
                 <button
                   onClick={clearCompare}
-                  className="text-xs font-sans text-[#777777] hover:text-[#B8892D] uppercase cursor-pointer tracking-wider"
+                  className="text-xs font-sans text-[#777777] hover:text-[#161616] uppercase cursor-pointer tracking-wider"
                 >
                   CLEAR ALL ({products.length})
                 </button>
@@ -66,9 +66,9 @@ export default function ComparePage() {
 
           {/* Empty State */}
           {products.length === 0 ? (
-            <div className="max-w-xl mx-auto text-center py-16 sm:py-24 px-6 space-y-5">
-              <div className="w-12 h-12 rounded-full bg-[#EFEAE2] flex items-center justify-center mx-auto text-[#B8892D]">
-                <Scale className="w-6 h-6 stroke-[1.5]" />
+            <div className="max-w-xl mx-auto text-center py-16 sm:py-24 px-4 space-y-5">
+              <div className="w-12 h-12 rounded-full bg-[#F9F9F9] border border-[#EAEAEA] flex items-center justify-center mx-auto text-[#161616]">
+                <Scale className="w-5 h-5 stroke-[1.5]" />
               </div>
               <div className="space-y-2">
                 <h2 className="font-serif text-2xl sm:text-3xl font-light text-[#161616]">
@@ -81,7 +81,7 @@ export default function ComparePage() {
               <div className="pt-3">
                 <Link
                   href="/collections/all"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#B8892D] hover:bg-[#D4AF37] text-[#111111] rounded-xl text-xs font-sans tracking-[0.14em] uppercase text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-sm min-h-[44px]"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#161616] hover:bg-[#B8892D] text-[#F8F6F2] hover:text-[#111111] rounded-xs text-xs font-sans font-medium tracking-[0.14em] uppercase transition-all duration-200 min-h-[44px]"
                 >
                   <span>EXPLORE ALL COLLECTIONS</span>
                   <ArrowUpRight className="w-4 h-4" />
@@ -89,8 +89,8 @@ export default function ComparePage() {
               </div>
             </div>
           ) : (
-            /* Populated Comparison Grid */
-            <div className="bg-white rounded-3xl p-6 sm:p-10 border border-black/8 shadow-xs overflow-x-auto">
+            /* Populated Comparison Grid (Contained Horizontal Scrolling Only) */
+            <div className="bg-white rounded-xs p-4 sm:p-8 border border-[#EAEAEA] overflow-x-auto">
               <div className="min-w-[640px]">
                 
                 {/* Header Row: Products */}

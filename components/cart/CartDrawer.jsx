@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShoppingBag } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useCartStore } from '@store/useCartStore';
 import CartItem from '@components/cart/CartItem';
 import CartSummary from '@components/cart/CartSummary';
@@ -40,56 +40,59 @@ export default function CartDrawer() {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop Overlay */}
+          {/* Subtle Backdrop Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-60 cursor-pointer"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs z-60 cursor-pointer"
           />
 
-          {/* Right Slide-in Drawer Container */}
+          {/* Right Slide-in Commerce Panel (Pure White Canvas, 400-440px width) */}
           <motion.div
             ref={drawerRef}
             initial={{ x: '100%' }}
             animate={{ x: '0%' }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-0 bottom-0 right-0 w-full sm:w-[420px] md:w-[440px] bg-[#F8F6F2] text-[#161616] z-60 shadow-2xl flex flex-col justify-between overflow-hidden border-l border-black/10 selection:bg-[#B8892D]/30"
+            className="fixed top-0 bottom-0 right-0 w-full sm:w-[420px] md:w-[440px] bg-white text-[#161616] z-60 shadow-xl flex flex-col justify-between overflow-hidden border-l border-[#EAEAEA] font-sans select-none"
           >
-            {/* Header */}
-            <div className="px-6 py-5 border-b border-black/10 flex items-center justify-between shrink-0 bg-[#F8F6F2]">
+            {/* Header: YOUR BAG, item count, close */}
+            <div className="px-6 py-5 border-b border-[#EAEAEA] flex items-center justify-between shrink-0 bg-white">
               <div className="flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-[#B8892D]" />
-                <h3 className="font-serif text-xl font-light text-[#161616]">YOUR BAG</h3>
-                <span className="px-2 py-0.5 bg-[#111111] text-[#F8F6F2] text-[10px] font-sans rounded-full font-bold">
-                  {cartItemsCount}
+                <h3 className="font-serif text-lg sm:text-xl font-light tracking-wide text-[#161616]">
+                  YOUR BAG
+                </h3>
+                <span className="text-xs font-sans text-[#777777] font-normal">
+                  ({cartItemsCount})
                 </span>
               </div>
 
               <button
+                type="button"
                 onClick={closeCart}
-                className="p-2 -mr-2 text-[#161616] hover:text-[#B8892D] transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-1 -mr-1 text-[#161616] hover:text-[#B8892D] transition-colors cursor-pointer min-h-[40px] min-w-[40px] flex items-center justify-center"
                 aria-label="Close Bag"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 stroke-[1.5]" />
               </button>
             </div>
 
-            {/* Scrollable Items List or Empty State with Stagger */}
+            {/* Scrollable Items List or Empty State */}
             <div className="flex-1 px-6 overflow-y-auto no-scrollbar py-2">
               {items.length === 0 ? (
                 <EmptyCart onClose={closeCart} />
               ) : (
-                <div className="divide-y divide-black/8">
+                <div className="divide-y divide-[#EAEAEA]">
                   {items.map((item, idx) => (
                     <motion.div
                       key={item.id}
                       layout
-                      initial={{ opacity: 0, y: 8 }}
+                      initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.2, delay: idx * 0.05, ease: 'easeOut' }}
+                      transition={{ duration: 0.2, delay: idx * 0.04, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <CartItem item={item} compact onCloseDrawer={closeCart} />
                     </motion.div>
@@ -98,9 +101,9 @@ export default function CartDrawer() {
               )}
             </div>
 
-            {/* Sticky Summary Footer */}
+            {/* Clean Summary Footer */}
             {items.length > 0 && (
-              <div className="px-6 py-5 border-t border-black/10 bg-white/90 backdrop-blur-md shrink-0 shadow-lg">
+              <div className="px-6 py-5 border-t border-[#EAEAEA] bg-white shrink-0">
                 <CartSummary isDrawer onCloseDrawer={closeCart} />
               </div>
             )}

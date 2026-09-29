@@ -46,7 +46,7 @@ const MOBILE_NAV_DATA = [
     title: 'THE HOUSE',
     subitems: [
       { name: 'Our Heritage & Metrology', href: '/collections/all' },
-      { name: 'KOKIO Care & Warranty', href: '/collections/all' },
+      { name: 'Atelier & Craftsmanship', href: '/collections/all' },
       { name: 'India Flagship Boutiques', href: '/collections/all' },
       { name: 'Client Advisory Support', href: '/collections/all' },
     ],
@@ -73,13 +73,13 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }) {
           className="fixed inset-0 z-50 bg-[#0D0D0D] text-[#F8F6F2] flex flex-col justify-between overflow-x-hidden overflow-y-auto lg:hidden selection:bg-[#B8892D]/30"
         >
           {/* Top Bar inside Drawer */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 shrink-0">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-white/10 shrink-0">
             <button
               onClick={onClose}
               className="p-2 -ml-2 text-[#F8F6F2] hover:text-[#B8892D] transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Close Menu"
             >
-              <X className="w-6 h-6 stroke-[1.5]" />
+              <X className="w-5 h-5 stroke-[1.5]" />
             </button>
 
             <Link href="/" onClick={onClose} className="flex flex-col items-center select-none">
@@ -87,7 +87,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }) {
               <span className="text-[8px] tracking-[0.35em] text-[#B8892D]">PARIS</span>
             </Link>
 
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1">
               <button
                 onClick={() => {
                   onClose();
@@ -118,14 +118,14 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }) {
           </div>
 
           {/* Center Accordion List */}
-          <div className="flex-1 px-6 py-6 space-y-2 divide-y divide-white/10 overflow-y-auto">
+          <div className="flex-1 px-4 sm:px-6 py-4 space-y-2 divide-y divide-white/10 overflow-y-auto">
             {MOBILE_NAV_DATA.map((cat, idx) => {
               const isExpanded = expandedIndex === idx;
               return (
-                <div key={cat.title} className="pt-3 first:pt-0">
+                <div key={cat.title} className="pt-2.5 first:pt-0">
                   <button
                     onClick={() => toggleAccordion(idx)}
-                    className="w-full py-3.5 min-h-[48px] flex items-center justify-between text-left text-base font-serif tracking-[0.15em] text-[#F8F6F2] uppercase hover:text-[#B8892D] transition-colors cursor-pointer"
+                    className="w-full py-3 min-h-[44px] flex items-center justify-between text-left text-sm sm:text-base font-serif tracking-[0.15em] text-[#F8F6F2] uppercase hover:text-[#B8892D] transition-colors cursor-pointer"
                   >
                     <span>{cat.title}</span>
                     <ChevronDown
@@ -141,8 +141,8 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }) {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.25 }}
-                        className="pl-3 pb-3 space-y-2.5 overflow-hidden"
+                        transition={{ duration: 0.22 }}
+                        className="pl-2 pb-2 space-y-1.5 overflow-hidden"
                       >
                         {cat.subitems.map((item) => (
                           <li key={item.name}>
@@ -165,13 +165,13 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }) {
           </div>
 
           {/* Signature Experience: FIND YOUR JOURNEY */}
-          <div className="px-6 pt-3 pb-1 border-t border-white/10 bg-[#0F0F0F] shrink-0">
+          <div className="px-4 sm:px-6 pt-3 pb-1 border-t border-white/10 bg-[#0F0F0F] shrink-0">
             <button
               onClick={() => {
                 onClose();
                 openJourney();
               }}
-              className="w-full px-4 py-3 bg-[#B8892D]/15 hover:bg-[#B8892D]/25 border border-[#B8892D]/40 rounded-xl flex items-center justify-between text-xs font-sans uppercase font-bold tracking-wider text-[#F8F6F2] hover:text-[#B8892D] transition-colors min-h-[44px] cursor-pointer"
+              className="w-full px-4 py-3 bg-[#B8892D]/15 hover:bg-[#B8892D]/25 border border-[#B8892D]/40 rounded-xs flex items-center justify-between text-xs font-sans uppercase font-medium tracking-wider text-[#F8F6F2] hover:text-[#B8892D] transition-colors min-h-[44px] cursor-pointer"
             >
               <div className="flex items-center gap-2">
                 <Compass className="w-4 h-4 text-[#B8892D]" />
@@ -182,11 +182,11 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }) {
           </div>
 
           {/* Quick Utility Links (Wishlist & Account) */}
-          <div className="px-6 py-3 border-t border-white/10 bg-[#101010] grid grid-cols-2 gap-3 shrink-0">
+          <div className="px-4 sm:px-6 py-3 border-t border-white/10 bg-[#101010] grid grid-cols-2 gap-2.5 shrink-0">
             <Link
               href="/wishlist"
               onClick={onClose}
-              className="px-3 py-2.5 bg-white/5 hover:bg-white/10 text-xs font-sans tracking-wider text-[#F8F6F2] hover:text-[#B8892D] rounded-xl flex items-center justify-center gap-2 transition-colors min-h-[44px]"
+              className="px-3 py-2.5 bg-white/5 hover:bg-white/10 text-xs font-sans tracking-wider text-[#F8F6F2] hover:text-[#B8892D] rounded-xs flex items-center justify-center gap-2 transition-colors min-h-[44px]"
             >
               <Heart className="w-4 h-4 text-[#B8892D]" />
               <span>WISHLIST</span>
@@ -194,7 +194,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }) {
             <Link
               href="/account"
               onClick={onClose}
-              className="px-3 py-2.5 bg-white/5 hover:bg-white/10 text-xs font-sans tracking-wider text-[#F8F6F2] hover:text-[#B8892D] rounded-xl flex items-center justify-center gap-2 transition-colors min-h-[44px]"
+              className="px-3 py-2.5 bg-white/5 hover:bg-white/10 text-xs font-sans tracking-wider text-[#F8F6F2] hover:text-[#B8892D] rounded-xs flex items-center justify-center gap-2 transition-colors min-h-[44px]"
             >
               <User className="w-4 h-4 text-[#B8892D]" />
               <span>ACCOUNT</span>
@@ -202,18 +202,13 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }) {
           </div>
 
           {/* Bottom Drawer Footer Context */}
-          <div className="px-6 py-5 border-t border-white/10 bg-[#141414] space-y-3 shrink-0">
+          <div className="px-4 sm:px-6 py-4 border-t border-white/10 bg-[#141414] space-y-2 shrink-0">
             <div className="flex items-center justify-between text-xs text-[#A0A0A0]">
-              <span className="flex items-center gap-1.5 text-[#B8892D] font-semibold">
+              <span className="flex items-center gap-1.5 text-[#B8892D] font-medium">
                 <Globe className="w-3.5 h-3.5" />
                 MUMBAI • NEW DELHI • BENGALURU
               </span>
               <span className="font-sans text-xs text-[#F8F6F2]">INR (₹)</span>
-            </div>
-
-            <div className="pt-2 flex items-center gap-2 text-[11px] text-[#A0A0A0]">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#B8892D]" />
-              <span>KOKIO Care & Maintenance Services</span>
             </div>
           </div>
 

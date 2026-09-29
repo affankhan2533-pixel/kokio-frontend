@@ -82,23 +82,31 @@ export default function SearchOverlay({ isOpen, onClose }) {
             className="fixed inset-0 bg-[#0D0D0D]/75 backdrop-blur-md z-50 cursor-pointer"
           />
 
-          {/* Luxury Search Overlay Panel */}
+          {/* Luxury Search Overlay Panel (Fullscreen on mobile, pure white canvas) */}
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-0 left-0 right-0 z-50 bg-[#F8F6F2] text-[#161616] border-b border-black/10 shadow-2xl max-h-[88vh] overflow-y-auto selection:bg-[#B8892D]/30"
+            className="fixed inset-0 sm:bottom-auto sm:left-0 sm:right-0 z-50 bg-white text-[#161616] border-b border-[#EAEAEA] shadow-2xl h-full sm:max-h-[88vh] overflow-y-auto selection:bg-[#B8892D]/20"
           >
-            <div className="max-w-5xl mx-auto px-6 py-6 md:py-10 space-y-8">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-10 py-4 sm:py-6 md:py-10 space-y-6 sm:space-y-8">
               
-              {/* Header Bar with Brand Title and Close Button */}
-              <div className="flex items-center justify-between border-b border-black/10 pb-4">
-                <div className="flex items-center gap-2">
-                  <span className="font-serif text-xs md:text-sm tracking-[0.25em] font-light uppercase text-[#777777]">
-                    SEARCH KOKIO
-                  </span>
+              {/* Header Bar: BACK / SEARCH */}
+              <div className="flex items-center justify-between border-b border-[#EAEAEA] pb-3 sm:pb-4">
+                <button
+                  onClick={onClose}
+                  className="flex items-center gap-1.5 text-xs font-sans tracking-[0.14em] uppercase text-[#777777] hover:text-[#161616] transition-colors cursor-pointer py-1 min-h-[44px]"
+                  aria-label="Back to page"
+                >
+                  <span className="sm:hidden font-medium">← BACK</span>
+                  <span className="hidden sm:inline font-light tracking-[0.25em]">SEARCH KOKIO</span>
+                </button>
+
+                <div className="sm:hidden text-xs font-serif tracking-[0.2em] font-light text-[#161616]">
+                  SEARCH
                 </div>
+
                 <button
                   onClick={onClose}
                   className="p-2 -mr-2 text-[#777777] hover:text-[#161616] transition-colors rounded-full cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
@@ -109,8 +117,8 @@ export default function SearchOverlay({ isOpen, onClose }) {
               </div>
 
               {/* Large Elegant Search Input */}
-              <div className="relative flex items-center border-b border-black/15 pb-3 sm:pb-4 focus-within:border-[#B8892D] transition-colors">
-                <Search className="w-6 h-6 md:w-8 md:h-8 text-[#B8892D] stroke-[1.5] shrink-0 mr-3 md:mr-4" />
+              <div className="relative flex items-center border-b border-[#EAEAEA] pb-3 sm:pb-4 focus-within:border-[#161616] transition-colors">
+                <Search className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-[#161616] stroke-[1.5] shrink-0 mr-3 md:mr-4" />
                 <input
                   ref={inputRef}
                   type="text"
@@ -118,7 +126,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleKeyDownInput}
                   placeholder="Search luggage, bags, accessories..."
-                  className="w-full bg-transparent font-serif text-xl sm:text-3xl md:text-4xl text-[#161616] placeholder-[#888888] focus:outline-none font-light tracking-tight"
+                  className="w-full bg-transparent font-serif text-lg sm:text-2xl md:text-3xl text-[#161616] placeholder-[#888888] focus:outline-none font-light tracking-tight"
                 />
                 {query.length > 0 && (
                   <button
@@ -189,26 +197,26 @@ export default function SearchOverlay({ isOpen, onClose }) {
                   </div>
 
                   {/* Editorial Compact Result List */}
-                  <div className="divide-y divide-black/8">
+                  <div className="divide-y divide-[#EAEAEA]">
                     {searchResults.map((item, idx) => (
                       <motion.div
                         key={item.id}
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.18, delay: idx * 0.04, ease: 'easeOut' }}
+                        transition={{ duration: 0.2, delay: idx * 0.05, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <Link
                           href={`/products/${item.slug}`}
                           onClick={onClose}
-                          className="group py-3.5 px-3 flex items-center justify-between rounded-xs hover:bg-white transition-colors cursor-pointer min-h-[56px]"
+                          className="group py-3.5 px-2 sm:px-3 flex items-center justify-between rounded-xs hover:bg-[#F9F9F9] transition-colors cursor-pointer min-h-[56px]"
                         >
-                          <div className="flex items-center gap-4 min-w-0">
-                            <div className="relative w-12 h-14 bg-[#EFEAE2] rounded-xs overflow-hidden shrink-0 border border-black/8">
+                          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                            <div className="relative w-12 h-14 bg-white rounded-xs overflow-hidden shrink-0 border border-[#EAEAEA] p-1">
                               <Image
                                 src={item.image}
                                 alt={item.name}
                                 fill
-                                className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-300"
+                                className="object-contain object-center group-hover:scale-[1.018] transition-transform duration-250 ease-[cubic-bezier(0.22,1,0.36,1)]"
                                 sizes="48px"
                               />
                             </div>

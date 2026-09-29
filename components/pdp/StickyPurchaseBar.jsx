@@ -12,7 +12,6 @@ export default function StickyPurchaseBar({ product, selectedColor, quantity }) 
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show sticky bar when scrolled past 600px
       setVisible(window.scrollY > 600);
     };
     window.addEventListener('scroll', handleScroll);
@@ -32,7 +31,7 @@ export default function StickyPurchaseBar({ product, selectedColor, quantity }) 
       quantity,
     });
     setIsAdded(true);
-    setTimeout(() => setIsAdded(false), 1200);
+    setTimeout(() => setIsAdded(false), 800);
     openCart();
   };
 
@@ -43,43 +42,38 @@ export default function StickyPurchaseBar({ product, selectedColor, quantity }) 
           initial={{ y: '100%', opacity: 0 }}
           animate={{ y: '0%', opacity: 1 }}
           exit={{ y: '100%', opacity: 0 }}
-          transition={{ duration: 0.22, ease: 'easeOut' }}
-          className="fixed bottom-0 left-0 right-0 z-40 bg-[#111111]/95 backdrop-blur-2xl text-[#F8F6F2] border-t border-white/10 shadow-2xl py-3 px-4 sm:px-6 md:px-12"
+          transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md text-[#161616] border-t border-[#EAEAEA] shadow-sm py-2 px-4 sm:px-8"
+          style={{ paddingBottom: 'calc(0.5rem + env(safe-area-inset-bottom, 0px))' }}
         >
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
-            {/* Left: Product Info */}
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            {/* Left: Product Name */}
             <div className="flex items-center gap-3 truncate">
-              <div className="space-y-0.5 truncate">
-                <span className="text-[9px] font-sans text-[#B8892D] uppercase tracking-widest block font-semibold truncate">
-                  {product.categoryLabel}
-                </span>
-                <h4 className="font-serif text-xs sm:text-base font-light text-[#F8F6F2] truncate">
-                  {product.name}
-                </h4>
-              </div>
+              <h4 className="font-serif text-sm sm:text-base font-light text-[#161616] truncate">
+                {product.name}
+              </h4>
             </div>
 
-            {/* Right: Price & Quick Buy Button */}
-            <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-              <span className="font-sans text-xs sm:text-base font-semibold text-[#F8F6F2]">
+            {/* Right: Price & Compact ADD TO BAG */}
+            <div className="flex items-center gap-4 shrink-0">
+              <span className="font-sans text-xs sm:text-sm font-medium text-[#161616]">
                 {product.price}
               </span>
               <button
+                type="button"
                 onClick={handleAddToCart}
-                className="min-h-[44px] px-4 sm:px-6 py-2.5 bg-[#B8892D] hover:bg-white text-[#111111] rounded-xs text-xs font-sans font-semibold tracking-wider uppercase transition-colors flex items-center gap-1.5 sm:gap-2 cursor-pointer"
+                className="min-h-[44px] px-5 py-2.5 bg-[#161616] hover:bg-[#B8892D] text-[#F8F6F2] hover:text-[#111111] rounded-xs text-xs font-sans font-medium tracking-[0.14em] uppercase transition-colors flex items-center gap-1.5 cursor-pointer"
                 aria-label={`Add ${product.name} to bag`}
               >
                 {isAdded ? (
                   <>
                     <Check className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">ADDED TO BAG</span>
-                    <span className="sm:hidden">ADDED</span>
+                    <span>ADDED TO BAG</span>
                   </>
                 ) : (
                   <>
                     <ShoppingBag className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">ADD TO BAG</span>
-                    <span className="sm:hidden">ADD</span>
+                    <span>ADD TO BAG</span>
                   </>
                 )}
               </button>
